@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Migration – Lernapp</title>
+<title>Migration – Lernapp F2AB</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -14,118 +14,138 @@
   --radius:10px;--shadow:0 2px 8px rgba(0,0,0,0.07);
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* LANDING */
 #landing{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px;text-align:center}
-#landing h1{font-size:32px;font-weight:700;margin-bottom:8px}
-#landing .sub{font-size:16px;color:var(--muted);margin-bottom:48px}
-.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:640px;width:100%}
-@media(max-width:520px){.mode-grid{grid-template-columns:1fr}}
-.mode-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:28px 24px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow);text-align:left}
+#landing h1{font-size:34px;font-weight:700;margin-bottom:6px}
+#landing .sub{font-size:15px;color:var(--muted);margin-bottom:48px}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:680px;width:100%}
+@media(max-width:540px){.mode-grid{grid-template-columns:1fr}}
+.mode-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:26px 22px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow);text-align:left}
 .mode-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,0.11)}
-.mode-icon{font-size:36px;margin-bottom:14px}
-.mode-card h2{font-size:18px;font-weight:600;margin-bottom:8px}
+.mode-icon{font-size:34px;margin-bottom:12px}
+.mode-card h2{font-size:17px;font-weight:600;margin-bottom:7px}
 .mode-card p{font-size:13px;color:var(--muted);line-height:1.65}
 .mode-card.crash{border-color:#e8a020}
+.mode-card.standard{border-color:#1a7a4a}
 .mode-card.full{border-color:#1a6fc4}
-.badge-crash{display:inline-block;font-size:11px;padding:3px 10px;background:#fef3e2;color:#a06010;border-radius:20px;margin-top:10px;font-weight:600}
-.badge-full{display:inline-block;font-size:11px;padding:3px 10px;background:#e8f1fb;color:#1a5fa0;border-radius:20px;margin-top:10px;font-weight:600}
-#app{display:none}
-header{background:var(--card);border-bottom:1px solid var(--border);padding:14px 24px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px}
-header h1{font-size:17px;font-weight:600;flex:1}
-.back-home{font-size:13px;color:var(--muted);cursor:pointer;border:1px solid var(--border);padding:5px 12px;border-radius:20px;background:transparent}
-.back-home:hover{background:var(--bg)}
-nav{display:flex;gap:6px;padding:12px 24px;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--border)}
-nav button{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted);transition:all .15s}
-nav button:hover{background:var(--bg)}
-nav button.active{background:var(--text);color:#fff;border-color:var(--text)}
-main{max-width:800px;margin:0 auto;padding:24px}
+.mode-card.quizm{border-color:#5a3fc0}
+.badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;margin-top:10px;font-weight:600}
+.b-crash{background:#fef3e2;color:#a06010}
+.b-standard{background:#e6f4ec;color:#1a7a4a}
+.b-full{background:#e8f1fb;color:#1a5fa0}
+.b-quiz{background:#eeecfe;color:#5a3fc0}
+
+/* SHARED APP SHELL */
+.app-shell{display:none;min-height:100vh;flex-direction:column}
+.app-shell.active{display:flex}
+.app-header{background:var(--card);border-bottom:1px solid var(--border);padding:13px 22px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px}
+.app-header h1{font-size:16px;font-weight:600;flex:1}
+.back-btn{font-size:13px;color:var(--muted);cursor:pointer;border:1px solid var(--border);padding:5px 12px;border-radius:20px;background:transparent;white-space:nowrap}
+.back-btn:hover{background:var(--bg)}
+.app-nav{display:flex;gap:6px;padding:10px 22px;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--border)}
+.app-nav button{padding:6px 13px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:12px;font-weight:500;color:var(--muted);transition:all .15s}
+.app-nav button:hover{background:var(--bg)}
+.app-nav button.active{background:var(--text);color:#fff;border-color:var(--text)}
+.app-main{max-width:820px;margin:0 auto;padding:24px;width:100%;flex:1}
 .page{display:none}.page.active{display:block}
-h2{font-size:20px;font-weight:600;margin-bottom:16px}
-h3{font-size:15px;font-weight:600;margin-bottom:10px}
+
+/* COMMON COMPONENTS */
+h2{font-size:20px;font-weight:700;margin-bottom:16px}
+h3{font-size:15px;font-weight:600;margin-bottom:9px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
 .card p,.card li{font-size:14px;color:var(--muted);line-height:1.75}
-.card ul{padding-left:18px}
-.card li{margin-bottom:4px}
+.card ul{padding-left:18px}.card li{margin-bottom:4px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:600px){.grid2{grid-template-columns:1fr}}
+@media(max-width:580px){.grid2{grid-template-columns:1fr}}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin:22px 0 9px}
 .tag{display:inline-block;font-size:12px;padding:3px 10px;border-radius:20px;margin:3px}
-.t-red{background:var(--red-bg);color:var(--red)}
-.t-green{background:var(--green-bg);color:var(--green)}
-.t-blue{background:var(--blue-bg);color:var(--blue-t)}
-.t-amber{background:var(--amber-bg);color:var(--amber)}
+.t-red{background:var(--red-bg);color:var(--red)}.t-green{background:var(--green-bg);color:var(--green)}
+.t-blue{background:var(--blue-bg);color:var(--blue-t)}.t-amber{background:var(--amber-bg);color:var(--amber)}
 .t-purple{background:var(--purple-bg);color:var(--purple)}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:var(--bg);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);color:var(--text)}
+th{background:var(--bg);padding:9px 12px;text-align:left;font-weight:600;border-bottom:1px solid var(--border)}
 td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
 tr:last-child td{border-bottom:none}
-.sec-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin:24px 0 10px}
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.flip{perspective:700px;height:130px;cursor:pointer}
-.flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s}
+.info-box{border-radius:var(--radius);padding:13px 15px;margin:10px 0;font-size:13px;line-height:1.7}
+.box-red{background:var(--red-bg);color:var(--red);border-left:3px solid var(--red)}
+.box-green{background:var(--green-bg);color:var(--green);border-left:3px solid var(--green)}
+.box-blue{background:var(--blue-bg);color:var(--blue-t);border-left:3px solid var(--blue)}
+.box-amber{background:var(--amber-bg);color:var(--amber);border-left:3px solid var(--amber)}
+.box-purple{background:var(--purple-bg);color:var(--purple);border-left:3px solid var(--purple)}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:13px;margin-bottom:28px}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow)}
+.ov-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,0.1)}
+.ov-icon{font-size:26px;margin-bottom:8px}
+.ov-card h3{font-size:14px;font-weight:600;margin-bottom:5px}
+.ov-card p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* FLASHCARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:13px}
+.flip{perspective:700px;height:120px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .42s}
 .flip.done .flip-in{transform:rotateY(180deg)}
-.front,.back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-align:center;padding:14px}
+.front,.back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-align:center;padding:13px}
 .front{background:var(--card);box-shadow:var(--shadow)}
 .back{background:var(--text);color:#fff;transform:rotateY(180deg)}
-.front p{font-size:14px;font-weight:500;color:var(--text)}
-.back p{font-size:13px;line-height:1.6}
-.hint-txt{font-size:12px;color:var(--hint);text-align:center;margin-bottom:16px}
-.quiz-wrap .q-txt{font-size:16px;font-weight:500;margin-bottom:16px;line-height:1.5}
-.quiz-wrap .progress{font-size:13px;color:var(--muted);margin-bottom:8px}
-.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px}
+.front p{font-size:13px;font-weight:500}
+.back p{font-size:12px;line-height:1.55}
+.hint-txt{font-size:12px;color:var(--hint);text-align:center;margin-bottom:14px}
+
+/* QUIZ */
+.quiz-wrap .q-txt{font-size:15px;font-weight:500;margin-bottom:15px;line-height:1.55}
+.quiz-wrap .progress{font-size:13px;color:var(--muted);margin-bottom:6px}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:18px}
 .prog-fill{height:4px;background:var(--text);border-radius:2px;transition:width .3s}
-.opt{display:block;width:100%;text-align:left;padding:12px 16px;margin-bottom:8px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:14px;transition:all .15s}
-.opt:hover{border-color:#aaa}
+.opt{display:block;width:100%;text-align:left;padding:11px 15px;margin-bottom:7px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer;font-size:13px;transition:all .15s}
+.opt:hover:not(:disabled){border-color:#aaa}
 .opt.correct{background:var(--green-bg);border-color:var(--green);color:var(--green)}
 .opt.wrong{background:var(--red-bg);border-color:var(--red);color:var(--red)}
 .opt:disabled{cursor:default}
-.next-btn{margin-top:14px;padding:10px 24px;border-radius:20px;border:none;background:var(--text);color:#fff;cursor:pointer;font-size:14px;font-weight:500}
+.next-btn{margin-top:12px;padding:9px 22px;border-radius:20px;border:none;background:var(--text);color:#fff;cursor:pointer;font-size:13px;font-weight:500}
 .result-box{text-align:center;padding:40px 20px}
-.result-box .score{font-size:52px;font-weight:700;margin-bottom:8px}
-.result-box p{color:var(--muted);margin-bottom:20px}
-.restart{padding:10px 28px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:14px;font-weight:500;margin-right:8px}
-.ov-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow)}
-.ov-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,0.1)}
-.ov-icon{font-size:28px;margin-bottom:10px}
-.ov-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
-.ov-card p{font-size:13px;color:var(--muted);line-height:1.6}
-.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px}
-#crash-app{display:none}
-#crash-header{background:#1a1a18;color:#fff;padding:14px 24px;position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:12px}
-#crash-header h1{font-size:17px;font-weight:600;flex:1}
-#crash-header .back-home{color:#aaa;border-color:#444}
-#crash-header .back-home:hover{background:#333}
-#crash-main{max-width:760px;margin:0 auto;padding:24px}
-.ck-intro{text-align:center;padding:20px 0 30px}
-.ck-intro h2{font-size:24px;font-weight:700;margin-bottom:8px}
-.ck-intro p{color:var(--muted);font-size:15px;margin-bottom:20px}
-.ck-start-btn{padding:12px 32px;border-radius:24px;border:none;background:#1a1a18;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
-.ck-progress-wrap{display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.ck-prog-bar{flex:1;height:6px;background:#e0ddd6;border-radius:3px}
-.ck-prog-fill{height:6px;background:#1a1a18;border-radius:3px;transition:width .4s}
-.ck-prog-txt{font-size:13px;color:var(--muted);white-space:nowrap}
-.ck-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:var(--shadow);margin-bottom:20px;display:none}
-.ck-card.active{display:block}
-.ck-step-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
-.ck-title{font-size:20px;font-weight:700;margin-bottom:16px;line-height:1.3}
-.ck-content{font-size:14px;color:var(--muted);line-height:1.8}
-.ck-content strong{color:var(--text)}
-.ck-content ul{padding-left:18px;margin:10px 0}
-.ck-content li{margin-bottom:6px}
-.ck-content .box{border-radius:var(--radius);padding:14px 16px;margin:12px 0;font-size:13px}
-.ck-content .box-red{background:var(--red-bg);color:var(--red);border-left:3px solid var(--red)}
-.ck-content .box-green{background:var(--green-bg);color:var(--green);border-left:3px solid var(--green)}
-.ck-content .box-amber{background:var(--amber-bg);color:var(--amber);border-left:3px solid var(--amber)}
-.ck-content .box-blue{background:var(--blue-bg);color:var(--blue-t);border-left:3px solid var(--blue)}
-.ck-content .box-purple{background:var(--purple-bg);color:var(--purple);border-left:3px solid var(--purple)}
-.ck-content .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-@media(max-width:500px){.ck-content .two{grid-template-columns:1fr}}
-.ck-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
-.ck-btn-sec{padding:10px 20px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:14px;font-weight:500}
+.result-box .score{font-size:50px;font-weight:700;margin-bottom:8px}
+.restart{padding:9px 22px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:13px;font-weight:500;margin:4px}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:8px}
+@media(max-width:480px){.diff-grid{grid-template-columns:1fr}}
+.diff-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 12px;text-align:center;cursor:pointer;transition:all .15s}
+.diff-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+/* CRASH COURSE */
+#crash-shell .app-header{background:#1a1a18;border-color:#333}
+#crash-shell .app-header h1{color:#fff}
+#crash-shell .back-btn{color:#aaa;border-color:#444}
+#crash-shell .back-btn:hover{background:#333}
+.ck-intro{text-align:center;padding:20px 0 28px}
+.ck-intro h2{font-size:23px;font-weight:700;margin-bottom:8px}
+.ck-intro p{color:var(--muted);font-size:14px;margin-bottom:20px}
+.ck-start-btn{padding:11px 30px;border-radius:22px;border:none;background:#1a1a18;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.ck-prog-wrap{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.ck-prog-bar{flex:1;height:5px;background:#e0ddd6;border-radius:3px}
+.ck-prog-fill{height:5px;background:#1a1a18;border-radius:3px;transition:width .4s}
+.ck-prog-txt{font-size:12px;color:var(--muted);white-space:nowrap}
+.ck-card-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;box-shadow:var(--shadow);margin-bottom:18px}
+.ck-step-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:12px}
+.ck-title{font-size:19px;font-weight:700;margin-bottom:14px;line-height:1.3}
+.ck-body{font-size:13px;color:var(--muted);line-height:1.8}
+.ck-body strong{color:var(--text)}
+.ck-body ul{padding-left:17px;margin:8px 0}.ck-body li{margin-bottom:5px}
+.ck-body .two{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}
+@media(max-width:480px){.ck-body .two{grid-template-columns:1fr}}
+.ck-nav{display:flex;gap:9px;justify-content:flex-end;margin-top:6px}
+.ck-btn-sec{padding:9px 18px;border-radius:20px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:13px;font-weight:500}
 .ck-btn-sec:hover{background:var(--bg)}
-.ck-btn-pri{padding:10px 24px;border-radius:20px;border:none;background:#1a1a18;color:#fff;cursor:pointer;font-size:14px;font-weight:500}
-.ck-done{text-align:center;padding:50px 20px;display:none}
-.ck-done h2{font-size:26px;font-weight:700;margin-bottom:10px}
-.ck-done p{color:var(--muted);margin-bottom:24px;font-size:15px;line-height:1.7}
-.ck-done-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ck-btn-pri{padding:9px 22px;border-radius:20px;border:none;background:#1a1a18;color:#fff;cursor:pointer;font-size:13px;font-weight:500}
+.ck-done{text-align:center;padding:50px 20px}
+.ck-done h2{font-size:24px;font-weight:700;margin-bottom:10px}
+.ck-done p{color:var(--muted);margin-bottom:22px;font-size:14px;line-height:1.7}
+.ck-done-btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+
+/* GLOSSARY */
+.gloss-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:10px;box-shadow:var(--shadow)}
+.gloss-term{font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px}
+.gloss-def{font-size:13px;color:var(--muted);line-height:1.65}
+.gloss-ex{font-size:12px;color:var(--blue-t);margin-top:5px;font-style:italic}
 </style>
 </head>
 <body>
@@ -135,35 +155,47 @@ tr:last-child td{border-bottom:none}
   <h1>🗺️ Migration Lernapp</h1>
   <p class="sub">Gesellschaftsprüfung – F2AB, 24.3.2026</p>
   <div class="mode-grid">
-    <div class="mode-card crash" onclick="startCrash()">
+    <div class="mode-card crash" onclick="startMode('crash')">
       <div class="mode-icon">⚡</div>
-      <h2>Crashkurs</h2>
-      <p>Alles Wichtige in ~10 Minuten. Kompakt, auf den Punkt – reicht locker für eine <strong>4.5</strong>.</p>
-      <span class="badge-crash">Schnell & kompakt</span>
+      <h2>Crash Course</h2>
+      <p>Nur das Wichtigste in ~10 Minuten. Kompakt und auf den Punkt.</p>
+      <span class="badge b-crash">Ziel: 4.0 – 4.5</span>
     </div>
-    <div class="mode-card full" onclick="startFull()">
+    <div class="mode-card standard" onclick="startMode('standard')">
+      <div class="mode-icon">📝</div>
+      <h2>Standard-Zusammenfassung</h2>
+      <p>Alle Themen strukturiert erklärt, mit mittlerem Detailgrad.</p>
+      <span class="badge b-standard">Ziel: 4.5 – 5.5</span>
+    </div>
+    <div class="mode-card full" onclick="startMode('full')">
       <div class="mode-icon">📚</div>
-      <h2>Vollständig lernen</h2>
-      <p>Alle Themen im Detail, Lernkarten und Quiz. Für alle die eine <strong>5.5 oder 6</strong> wollen.</p>
-      <span class="badge-full">Vollständig & interaktiv</span>
+      <h2>Vollständige Zusammenfassung</h2>
+      <p>Alles im Detail: Beispiele, Tabellen, Zusammenhänge.</p>
+      <span class="badge b-full">Ziel: 5.5 – 6.0</span>
+    </div>
+    <div class="mode-card quizm" onclick="startMode('quiz')">
+      <div class="mode-icon">✏️</div>
+      <h2>Quiz-Modus</h2>
+      <p>Teste dich mit 3 Schwierigkeitsstufen und zufälligen Fragen.</p>
+      <span class="badge b-quiz">Interaktiv</span>
     </div>
   </div>
 </div>
 
-<!-- CRASHKURS -->
-<div id="crash-app">
-  <div id="crash-header">
-    <h1>⚡ Crashkurs Migration</h1>
-    <button class="back-home" onclick="goHome()">← Zurück</button>
+<!-- CRASH COURSE -->
+<div class="app-shell" id="crash-shell">
+  <div class="app-header">
+    <h1>⚡ Crash Course – Migration</h1>
+    <button class="back-btn" onclick="goHome()">← Zurück</button>
   </div>
-  <div id="crash-main">
-    <div class="ck-intro" id="ck-intro">
-      <h2>Bereit für den Crashkurs?</h2>
+  <div class="app-main">
+    <div id="ck-intro" class="ck-intro">
+      <h2>Bereit für den Crash Course?</h2>
       <p>8 kompakte Blöcke. Nur das Wichtigste.<br>Lernzeit ca. <strong>10–15 Minuten</strong>.</p>
       <button class="ck-start-btn" onclick="ckStart()">Los geht's →</button>
     </div>
     <div id="ck-running" style="display:none">
-      <div class="ck-progress-wrap">
+      <div class="ck-prog-wrap">
         <div class="ck-prog-bar"><div class="ck-prog-fill" id="ck-fill" style="width:0%"></div></div>
         <span class="ck-prog-txt" id="ck-prog-txt">1 / 8</span>
       </div>
@@ -173,361 +205,718 @@ tr:last-child td{border-bottom:none}
         <button class="ck-btn-pri" id="ck-next" onclick="ckNav(1)">Weiter →</button>
       </div>
     </div>
-    <div class="ck-done" id="ck-done">
-      <div style="font-size:52px;margin-bottom:16px">🎉</div>
-      <h2>Crashkurs abgeschlossen!</h2>
-      <p>Du weisst jetzt das Wichtigste für die Prüfung.<br>Für eine noch bessere Note: mach den <strong>vollständigen Kurs</strong> oder teste dich im <strong>Quiz</strong>.</p>
+    <div class="ck-done" id="ck-done" style="display:none">
+      <div style="font-size:50px;margin-bottom:14px">🎉</div>
+      <h2>Crash Course abgeschlossen!</h2>
+      <p>Du kennst jetzt das Wichtigste für die Prüfung.<br>Für eine bessere Note: Vollständige Zusammenfassung oder Quiz!</p>
       <div class="ck-done-btns">
         <button class="ck-btn-sec" onclick="ckRestart()">↺ Nochmal</button>
-        <button class="ck-btn-pri" onclick="startFull()">📚 Vollständig lernen</button>
+        <button class="ck-btn-pri" onclick="startMode('full')">📚 Vollständige Zusammenfassung</button>
+        <button class="ck-btn-pri" onclick="startMode('quiz')">✏️ Quiz starten</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- VOLLSTÄNDIGE APP -->
-<div id="app">
-  <header>
-    <h1>📚 Migration – Vollständig lernen</h1>
-    <button class="back-home" onclick="goHome()">← Zurück</button>
-  </header>
-  <nav>
-    <button class="active" onclick="go('home')">🏠 Start</button>
-    <button onclick="go('hominiden')">🦴 Hominiden</button>
-    <button onclick="go('faktoren')">⬆️ Push & Pull</button>
-    <button onclick="go('schweiz')">🇨🇭 Schweiz</button>
-    <button onclick="go('fluechtlinge')">📋 Flüchtlinge</button>
-    <button onclick="go('senegal')">🌍 Senegal</button>
-    <button onclick="go('statistik')">📊 Statistik CH</button>
-    <button onclick="go('karten')">🃏 Lernkarten</button>
-    <button onclick="go('quiz')">✏️ Quiz</button>
+<!-- STANDARD SUMMARY -->
+<div class="app-shell" id="standard-shell">
+  <div class="app-header">
+    <h1>📝 Standard-Zusammenfassung</h1>
+    <button class="back-btn" onclick="goHome()">← Zurück</button>
+  </div>
+  <nav class="app-nav" id="std-nav">
+    <button class="active" onclick="stdGo('std-home')">🏠 Start</button>
+    <button onclick="stdGo('std-hom')">🦴 Hominiden</button>
+    <button onclick="stdGo('std-pp')">⬆️ Push & Pull</button>
+    <button onclick="stdGo('std-ch1')">🇨🇭 CH bis 1945</button>
+    <button onclick="stdGo('std-ch2')">🏭 CH nach 1945</button>
+    <button onclick="stdGo('std-fl')">📋 Flüchtlinge</button>
+    <button onclick="stdGo('std-sen')">🌍 Senegal</button>
+    <button onclick="stdGo('std-stat')">📊 Statistik</button>
+    <button onclick="stdGo('std-gloss')">📖 Fachbegriffe</button>
   </nav>
-  <main>
+  <div class="app-main" id="std-main"></div>
+</div>
 
-    <div id="home" class="page active">
-      <h2>Was lernst du heute?</h2>
-      <div class="ov-grid">
-        <div class="ov-card" onclick="go('hominiden')"><div class="ov-icon">🦴</div><h3>Hominiden-Migration</h3><p>Afrika, Zeitlinie, Wanderungsgründe</p></div>
-        <div class="ov-card" onclick="go('faktoren')"><div class="ov-icon">⬆️⬇️</div><h3>Push & Pull Faktoren</h3><p>Gründe + Vor/Nachteile für Herkunfts- und Zielland</p></div>
-        <div class="ov-card" onclick="go('schweiz')"><div class="ov-icon">🇨🇭</div><h3>Migration Schweiz</h3><p>Auswanderung, Rotationsprinzip, ANAG, Schwarzenbach</p></div>
-        <div class="ov-card" onclick="go('fluechtlinge')"><div class="ov-icon">📋</div><h3>Flüchtlinge & Asyl</h3><p>Genfer Konvention, Non-Refoulement</p></div>
-        <div class="ov-card" onclick="go('senegal')"><div class="ov-icon">🌍</div><h3>Fallbeispiel Senegal</h3><p>Typische Migranten, Realität in Europa</p></div>
-        <div class="ov-card" onclick="go('statistik')"><div class="ov-icon">📊</div><h3>Statistik Schweiz</h3><p>Rekord-Zuwanderung 2023, Einwanderungsgründe</p></div>
-        <div class="ov-card" onclick="go('karten')"><div class="ov-icon">🃏</div><h3>Lernkarten</h3><p>Karte anklicken zum Umdrehen</p></div>
-        <div class="ov-card" onclick="go('quiz')"><div class="ov-icon">✏️</div><h3>Quiz – Teste dich!</h3><p>15 Fragen aus allen Themen</p></div>
-      </div>
-    </div>
+<!-- FULL SUMMARY -->
+<div class="app-shell" id="full-shell">
+  <div class="app-header">
+    <h1>📚 Vollständige Zusammenfassung</h1>
+    <button class="back-btn" onclick="goHome()">← Zurück</button>
+  </div>
+  <nav class="app-nav" id="full-nav">
+    <button class="active" onclick="fullGo('full-home')">🏠 Start</button>
+    <button onclick="fullGo('full-hom')">🦴 Hominiden</button>
+    <button onclick="fullGo('full-pp')">⬆️ Push & Pull</button>
+    <button onclick="fullGo('full-ch1')">🇨🇭 CH bis 1945</button>
+    <button onclick="fullGo('full-ch2')">🏭 CH nach 1945</button>
+    <button onclick="fullGo('full-fl')">📋 Flüchtlinge</button>
+    <button onclick="fullGo('full-sen')">🌍 Senegal</button>
+    <button onclick="fullGo('full-stat')">📊 Statistik</button>
+    <button onclick="fullGo('full-karten')">🃏 Lernkarten</button>
+    <button onclick="fullGo('full-gloss')">📖 Fachbegriffe</button>
+  </nav>
+  <div class="app-main" id="full-main"></div>
+</div>
 
-    <div id="hominiden" class="page">
-      <h2>🦴 Migration der Hominiden</h2>
-      <div class="card">
-        <h3>Ursprung & Zeitlinie</h3>
-        <ul>
-          <li>Ursprung: <strong>Afrika</strong> – „Wiege der Menschheit"</li>
-          <li>Erste Auswanderung: vor <strong>über 2 Mio. Jahren</strong> (Homo erectus)</li>
-          <li>Asien: ca. <strong>1.8 Mio. Jahre</strong> | Europa: ca. <strong>1.5 Mio. Jahre</strong></li>
-          <li>Homo sapiens verlässt Afrika: ca. <strong>45'000 Jahre</strong></li>
-          <li>Amerika über Beringstrasse: ca. <strong>60'000–20'000 Jahre</strong></li>
-          <li>Australien: ca. <strong>50'000–60'000 Jahre</strong></li>
-        </ul>
-      </div>
-      <div class="grid2">
-        <div class="card"><h3>Wie gewandert?</h3><ul><li>Zu Fuss – folgten Tieren & Nahrung</li><li>Über <strong>Landbrücken</strong> (tieferer Meeresspiegel)</li><li>Teilweise mit einfachen Booten</li></ul></div>
-        <div class="card"><h3>Warum verbreitet?</h3><ul><li>Klimawandel → Savannen entstehen</li><li>Nahrungssuche → Tiere wandern</li><li>Anpassungsfähigkeit → grösseres Gehirn</li><li>Bevölkerungsdruck</li></ul></div>
-      </div>
-      <div class="card" style="border-left:3px solid var(--purple);background:var(--purple-bg)">
-        <h3 style="color:var(--purple)">⚡ Wichtige Zusammenhänge</h3>
-        <ul>
-          <li>Klimawandel → offene Landschaft → <strong>aufrechter Gang entsteht</strong></li>
-          <li>Migration → Kontakt → <strong>Vermischung</strong> (z.B. Neandertaler-Gene)</li>
-          <li>Mehrere Wanderungswellen → erklärt <strong>Unterschiede zwischen Menschen</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="faktoren" class="page">
-      <h2>⬆️ Push & Pull Faktoren</h2>
-      <div class="grid2">
-        <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push – Gründe wegzugehen</h3><span class="tag t-red">Krieg</span><span class="tag t-red">Armut</span><span class="tag t-red">Schlechtes Leben</span><span class="tag t-red">Politische Unterdrückung</span><span class="tag t-red">Schlechtes Gesetz</span><span class="tag t-red">Mängel</span></div>
-        <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull – Gründe hinzugehen</h3><span class="tag t-green">Bessere Infrastruktur</span><span class="tag t-green">Bessere Jobs</span><span class="tag t-green">Besseres Leben</span><span class="tag t-green">Bürgergeld</span><span class="tag t-green">Besseres Gesetz</span></div>
-      </div>
-      <p class="sec-label">Vor- und Nachteile der Migration</p>
-      <div class="card">
-        <table>
-          <tr><th></th><th>Herkunftsland</th><th>Zielland</th></tr>
-          <tr><td><strong>Kosten</strong></td><td>Verlust Arbeitskräfte<br>Geringere Steuereinnahmen</td><td>Weniger freie Stellen<br>Konkurrenz für Einheimische<br>Integrationskurse</td></tr>
-          <tr><td><strong>Nutzen</strong></td><td>Arbeitslosenrate sinkt<br>Finanzielle Überweisungen<br>Mehr Platz</td><td>Bessere Lebensstandards<br>Brain gain<br>Mehr Steuereinnahmen<br>Wirtschaft wächst</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div id="schweiz" class="page">
-      <h2>🇨🇭 Migration Schweiz</h2>
-      <p class="sec-label">Auswanderung bis 1880</p>
-      <div class="card"><h3>Armutsauswanderung</h3><ul><li>Extreme Armut in ländlichen Gebieten</li><li>Arbeitsmangel – kaum Industrie</li><li>Bevölkerungswachstum → zu wenig Land & Arbeit</li><li>Beispiel: Kanton Aargau schickte 320 der ärmsten Einwohner nach Amerika</li></ul></div>
-      <div class="grid2">
-        <div class="card" style="border-top:3px solid var(--red)"><h3>Push aus CH</h3><ul><li>Nahrungsmangel</li><li>Arbeitsplatzmangel</li><li>Wirtschaftskrisen</li></ul></div>
-        <div class="card" style="border-top:3px solid var(--green)"><h3>Pull nach USA</h3><ul><li>Land der Möglichkeiten</li><li>Freie Flächen → Bauern</li><li>Keine Einwanderungsschranken</li></ul></div>
-      </div>
-      <p class="sec-label">Einwanderung ab 1880</p>
-      <div class="card"><ul><li>Industrie wächst stark → viele neue Arbeitsplätze</li><li>Schweiz wirbt Arbeitskräfte aus dem Ausland an</li></ul></div>
-      <p class="sec-label">Nach 1945 – Rotationsprinzip</p>
-      <div class="card"><h3>Rotationsprinzip</h3><ul><li>Saisonnier: max. <strong>9 Monate</strong>, dann 3 Monate zurück</li><li>Familienzug stark eingeschränkt oder verboten</li><li>Kein Familienleben, keine Integration, Ausbeutung</li></ul><table style="margin-top:12px"><tr><th>Gewinner</th><th>Verlierer</th></tr><tr><td>Schweizer Unternehmen, Staat</td><td>Gastarbeiter, ihre Familien</td></tr></table></div>
-      <div class="card"><h3>Assimilation (1970er)</h3><ul><li>Migranten sollen sich vollständig anpassen (Sprache, Kultur, Normen)</li><li>Problem: Einseitig – nur Migranten müssen sich ändern</li><li>Führt zu Identitätsverlust, psychischer Belastung</li></ul></div>
-      <div class="card"><h3>ANAG (1931) & Schwarzenbach-Initiative (1970)</h3><ul><li><strong>ANAG:</strong> Bundesgesetz – regelt Einreise, Aufenthalt, Ausweisung. Ziel: Migration begrenzen.</li><li><strong>Schwarzenbach:</strong> Max. 10% Ausländer pro Kanton. <strong>Knapp abgelehnt (54% Nein).</strong> Zeigt wie stark die Überfremdungsangst war.</li></ul></div>
-    </div>
-
-    <div id="fluechtlinge" class="page">
-      <h2>📋 Flüchtlinge & Asyl</h2>
-      <div class="card" style="border-left:3px solid var(--blue)"><h3>Definition Flüchtling – Genfer Konvention Art. 1</h3><ul><li>Nicht sicher im Heimatland</li><li>Wird verfolgt oder hat ernsthafte Angst davor</li><li>Flieht und braucht Schutz im Ausland</li></ul></div>
-      <div class="grid2">
-        <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">✅ Ist Flüchtling</h3><ul><li>Verfolgt wegen Religion</li><li>Verfolgt wegen pol. Engagement</li><li>Bedroht wegen Homosexualität</li></ul></div>
-        <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">❌ Kein Flüchtling</h3><ul><li>Flieht nur wegen Armut</li><li>Sucht bessere Lebensbedingungen ohne Verfolgung</li></ul></div>
-      </div>
-      <div class="card"><h3>Non-Refoulement – Art. 33</h3><p>Kein Staat darf einen Flüchtling abschieben, wenn dort sein Leben/seine Freiheit bedroht ist (wegen Rasse, Religion, Nationalität, pol. Überzeugung, soz. Gruppe).</p></div>
-    </div>
-
-    <div id="senegal" class="page">
-      <h2>🌍 Fallbeispiel Senegal</h2>
-      <div class="card"><h3>Typische Migranten</h3><ul><li>Meist junge Männer, oft arbeitslos</li><li>Teilweise gebildet, aber keine Jobs</li><li>Wollen Familien finanziell unterstützen</li></ul></div>
-      <div class="grid2">
-        <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push (Senegal)</h3><ul><li>Arbeitslosigkeit / keine Perspektiven</li><li>Starkes Bevölkerungswachstum</li><li>Armut, Unzufriedenheit mit Politik</li></ul></div>
-        <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull (Europa)</h3><ul><li>Hoffnung auf Arbeit & Geld</li><li>Bild von Europa als Erfolgsort</li><li>Migration = sozialer Aufstieg</li></ul></div>
-      </div>
-      <div class="card" style="border-top:3px solid var(--amber)"><h3 style="color:var(--amber)">Realität in Europa</h3><ul><li>Oft illegales Leben ohne Bewilligung</li><li>Schlechte Jobs, Angst vor Abschiebung</li><li>Viele scheitern oder werden zurückgeschickt</li></ul></div>
-      <div class="card"><h3>Lösungen</h3><div class="grid2"><div><strong>Senegal:</strong><ul><li>Mehr Arbeitsplätze</li><li>Perspektiven für Jugendliche</li></ul></div><div><strong>Europa:</strong><ul><li>Faire Migrationspolitik</li><li>Legale Wege</li><li>Entwicklungshilfe</li></ul></div></div></div>
-    </div>
-
-    <div id="statistik" class="page">
-      <h2>📊 Statistiken Migration Schweiz</h2>
-      <div class="card"><h3>Bevölkerungswachstum</h3><p>Ohne Ausländer würde die Bevölkerung schrumpfen. Der Geburtenüberschuss der Schweizer ist negativ.</p></div>
-      <div class="card" style="border-left:3px solid var(--blue)"><h3>Rekord-Zuwanderung 2023</h3><ul><li>Netto knapp <strong>70'000</strong> Ausländer pro Jahr</li><li><strong>60 %</strong> EU/Efta, <strong>40 %</strong> Drittstaaten</li><li>2023: Rekordwert wegen Ukraine-Geflüchteten</li></ul></div>
-      <div class="card"><h3>Einwanderungsgründe 2010–2024</h3><table><tr><th>Grund</th><th>EU/Efta</th><th>Drittstaaten</th></tr><tr><td>Erwerbstätigkeit</td><td>65 %</td><td>29 %</td></tr><tr><td>Familiennachzug</td><td>22 %</td><td>47 %</td></tr><tr><td>Aus-/Weiterbildung</td><td>7 %</td><td>8 %</td></tr><tr><td>Asylbereich</td><td>–</td><td>8 %</td></tr></table></div>
-    </div>
-
-    <div id="karten" class="page">
-      <h2>🃏 Lernkarten</h2>
-      <p class="hint-txt">Karte anklicken → Antwort aufdecken</p>
-      <div class="cards-grid" id="cards-container"></div>
-    </div>
-
-    <div id="quiz" class="page">
-      <h2>✏️ Quiz – Teste dich!</h2>
-      <div id="quiz-container"></div>
-    </div>
-
-
-  </main>
+<!-- QUIZ MODE -->
+<div class="app-shell" id="quiz-shell">
+  <div class="app-header">
+    <h1>✏️ Quiz-Modus</h1>
+    <button class="back-btn" onclick="goHome()">← Zurück</button>
+  </div>
+  <div class="app-main">
+    <div id="quiz-container"></div>
+  </div>
 </div>
 
 <script>
-function goHome(){document.getElementById('landing').style.display='flex';document.getElementById('app').style.display='none';document.getElementById('crash-app').style.display='none';}
-function startFull(){document.getElementById('landing').style.display='none';document.getElementById('crash-app').style.display='none';document.getElementById('app').style.display='block';go('home');}
-function startCrash(){document.getElementById('landing').style.display='none';document.getElementById('app').style.display='none';document.getElementById('crash-app').style.display='block';ckReset();}
-
-function go(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('nav button').forEach(b=>{if(b.getAttribute('onclick')===`go('${id}')`)b.classList.add('active');});
-  if(id==='karten')buildCards();
-  if(id==='quiz')buildQuiz();
+// ─── NAVIGATION ───────────────────────────────────────────────────
+function goHome(){
+  document.querySelectorAll('.app-shell').forEach(s=>s.classList.remove('active'));
+  document.getElementById('landing').style.display='flex';
+}
+function startMode(m){
+  document.getElementById('landing').style.display='none';
+  document.querySelectorAll('.app-shell').forEach(s=>s.classList.remove('active'));
+  if(m==='crash'){document.getElementById('crash-shell').classList.add('active');ckReset();}
+  else if(m==='standard'){document.getElementById('standard-shell').classList.add('active');buildStd();stdGo('std-home');}
+  else if(m==='full'){document.getElementById('full-shell').classList.add('active');buildFull();fullGo('full-home');}
+  else if(m==='quiz'){document.getElementById('quiz-shell').classList.add('active');buildQuizMenu();}
 }
 
-const CARDS=[
-  {q:"Wo ist der Ursprung der Hominiden?",a:"Afrika – 'Wiege der Menschheit'"},
-  {q:"Wann verliess Homo erectus erstmals Afrika?",a:"Vor über 2 Mio. Jahren"},
-  {q:"Wann besiedelte Homo sapiens Amerika?",a:"Ca. 60'000–20'000 Jahre (über Beringstrasse)"},
-  {q:"Was ist ein Push-Faktor?",a:"Grund ein Land zu VERLASSEN (z.B. Krieg, Armut, schlechte Gesetze)"},
-  {q:"Was ist ein Pull-Faktor?",a:"Grund in ein Land zu ZIEHEN (z.B. bessere Jobs, Sicherheit, höherer Lohn)"},
-  {q:"Was bedeutet das Rotationsprinzip?",a:"Ausländer durften nur temporär bleiben: max. 9 Monate Arbeit, dann 3 Monate zurück"},
-  {q:"Was ist Assimilation?",a:"Migranten sollen sich vollständig an die Schweizer Gesellschaft anpassen"},
-  {q:"Was ist die Schwarzenbach-Initiative?",a:"1970: Wollte Ausländeranteil auf max. 10% pro Kanton. Knapp abgelehnt (54% Nein)"},
-  {q:"Was ist das ANAG?",a:"Bundesgesetz 1931 – regelt Einreise, Aufenthalt & Ausweisung. Ziel: Migration begrenzen"},
-  {q:"Definition Flüchtling nach Genfer Konvention?",a:"Jemand der verfolgt wird, nicht sicher im Heimatland ist und Schutz im Ausland braucht"},
-  {q:"Was bedeutet Non-Refoulement?",a:"Kein Flüchtling darf abgeschoben werden wenn sein Leben/seine Freiheit bedroht ist"},
-  {q:"Warum wanderten Schweizer vor 1880 aus?",a:"Extreme Armut, Arbeitsmangel, Bevölkerungswachstum, kaum Industrie"},
-  {q:"Warum zogen Leute ab 1880 in die Schweiz?",a:"Industrialisierung – viele neue Arbeitsplätze in Textilindustrie, Maschinenbau, Chemieindustrie"},
-  {q:"Typischer Migrant aus Senegal?",a:"Junger Mann, arbeitslos, teilweise gebildet, will Familie finanziell unterstützen"},
-  {q:"Realität der Senegalesen in Europa?",a:"Oft illegal ohne Bewilligung, schlechte Jobs, Angst vor Abschiebung, viele scheitern"},
-];
-
-function buildCards(){
-  const c=document.getElementById('cards-container');c.innerHTML='';
-  CARDS.forEach(card=>{
-    const d=document.createElement('div');d.className='flip';
-    d.innerHTML=`<div class="flip-in"><div class="front"><p>${card.q}</p></div><div class="back"><p>${card.a}</p></div></div>`;
-    d.onclick=()=>d.classList.toggle('done');c.appendChild(d);
-  });
-}
-
-const QUIZ={
-  easy:[
-    {q:"Wo liegt der Ursprung aller Menschen?",opts:["Europa","Asien","Afrika","Amerika"],a:2},
-    {q:"Was ist ein Push-Faktor?",opts:["Grund in ein Land zu ziehen","Grund ein Land zu verlassen","Grenzpolitik","Integrationsplan"],a:1},
-    {q:"Was ist ein Pull-Faktor?",opts:["Grund wegzugehen","Staatsgrenze","Grund in ein neues Land zu ziehen","Aufenthaltsverbot"],a:2},
-    {q:"Wie kamen die ersten Menschen nach Amerika?",opts:["Mit Schiffen","Über die Beringstrasse (Landbrücke)","Per Flugzeug","Durch Schwimmen"],a:1},
-    {q:"Was war das Hauptproblem der Assimilationspolitik?",opts:["Zu teuer","Nur Migranten mussten sich anpassen, nicht die Gesellschaft","Zu viele Sprachen","Keine Gesetze"],a:1},
-    {q:"Wer sind typische Migranten aus Senegal?",opts:["Alte Frauen","Kinder","Meist junge Männer ohne Job","Reiche Unternehmer"],a:2},
-    {q:"Was regelt das ANAG?",opts:["Schulen für Migranten","Einreise, Aufenthalt und Ausweisung von Ausländern","Löhne der Gastarbeiter","Asylverfahren"],a:1},
-    {q:"Was bedeutet Non-Refoulement?",opts:["Migranten müssen integriert werden","Ein Flüchtling darf nicht abgeschoben werden wenn sein Leben bedroht ist","Ausländer brauchen Arbeitsbewilligung","Flüchtlinge dürfen nicht arbeiten"],a:1},
-    {q:"Wann begann die Industrialisierung in der Schweiz?",opts:["Um 1750","Um 1950","Ab ca. 1880","Nach 1945"],a:2},
-    {q:"Was ist ein Flüchtling laut Genfer Konvention?",opts:["Jemand der Arbeit sucht","Jemand der wegen Armut flieht","Jemand der wegen Verfolgung Schutz im Ausland braucht","Jemand der umzieht"],a:2},
-    {q:"Warum wanderten Schweizer vor 1880 nach Amerika aus?",opts:["Wegen Krieg","Wegen Langeweile","Wegen extremer Armut und Arbeitsmangel","Wegen Religion"],a:2},
-    {q:"Wie viele Ausländer wandern netto pro Jahr in die Schweiz?",opts:["5'000","20'000","70'000","500'000"],a:2},
-    {q:"Was passierte mit Gastarbeitern unter dem Rotationsprinzip?",opts:["Sie durften für immer bleiben","Sie mussten nach max. 9 Monaten zurück","Sie bekamen sofort den Schweizer Pass","Ihre Familien kamen mit"],a:1},
-    {q:"Welcher Kontinent ist die 'Wiege der Menschheit'?",opts:["Asien","Amerika","Australien","Afrika"],a:3},
-    {q:"Was ist Realität für viele Senegalesen in Europa?",opts:["Gut bezahlte Jobs sofort","Legaler Status und gute Wohnung","Oft illegales Leben, schlechte Jobs, Angst vor Abschiebung","Schnelle Einbürgerung"],a:2},
-    {q:"Was sagt die Schwarzenbach-Initiative?",opts:["Mehr Ausländer einladen","Ausländeranteil auf max. 10% pro Kanton begrenzen","Asyl für alle gewähren","Schweizer dürfen nicht auswandern"],a:1},
-    {q:"Wann verliess Homo sapiens Afrika?",opts:["Vor 2 Mio. Jahren","Vor 500'000 Jahren","Vor ca. 45'000 Jahren","Vor 10'000 Jahren"],a:2},
-    {q:"Was ist ein Beispiel für einen Pull-Faktor?",opts:["Krieg im Heimatland","Arbeitslosigkeit","Bessere Jobs im Zielland","Schlechte Gesetze"],a:2},
-    {q:"Was brachte die Industrialisierung für die Schweiz?",opts:["Mehr Armut","Viele neue Arbeitsplätze in Fabriken","Weniger Einwohner","Auswanderungswelle"],a:1},
-    {q:"Wer profitierte vom Rotationsprinzip?",opts:["Die Gastarbeiter","Schweizer Unternehmen und der Staat","Beide gleichermassen","Niemand"],a:1},
-  ],
-  medium:[
-    {q:"Vor wie vielen Jahren verliess Homo erectus erstmals Afrika?",opts:["Vor 500'000 Jahren","Vor über 2 Mio. Jahren","Vor 50'000 Jahren","Vor 300'000 Jahren"],a:1},
-    {q:"Wann wurde Australien besiedelt?",opts:["Vor 10'000 Jahren","Vor 1 Mio. Jahren","Vor ca. 50'000–60'000 Jahren","Vor 5'000 Jahren"],a:2},
-    {q:"Was erklärt die Neandertaler-Gene in heutigen Menschen?",opts:["Zufällige Mutation","Vermischung durch Migration und Kontakt zwischen Gruppen","Klimaanpassung","Wissenschaftliche Manipulation"],a:1},
-    {q:"Welches war die Hauptroute der ersten Menschen aus Afrika?",opts:["Direkt nach Europa","Über den Nahen Osten nach Asien und Europa","Über den Atlantik","Direkt nach Amerika"],a:1},
-    {q:"Was war ein konkretes Beispiel der Armutsauswanderung aus der Schweiz?",opts:["Bern schickte Soldaten nach Frankreich","Kanton Aargau schickte 320 der ärmsten Einwohner nach Amerika","Zürich baute Hilfswerke","Basel gründete Kolonien"],a:1},
-    {q:"Was ist der Unterschied zwischen Saisonnier- und Jahresbewilligung?",opts:["Keine – beide sind gleich","Saisonnier max. 9 Monate, Jahresbewilligung verlängerbar","Saisonnier für immer, Jahresbewilligung temporär","Saisonnier nur für Frauen"],a:1},
-    {q:"Welche Verfolgungsgrund gilt NICHT für die Flüchtlingsdefinition?",opts:["Religion","Rasse","Armut","Politische Überzeugung"],a:2},
-    {q:"Was ist Brain Gain?",opts:["Verlust von Fachkräften","Zuwanderung von qualifizierten Fachkräften ins Zielland","Bildungsprogramm für Migranten","Sprachkurs für Flüchtlinge"],a:1},
-    {q:"Warum gilt Erwerbsmigration oft als temporär?",opts:["Weil sie illegal ist","Weil viele nach einigen Jahren zurückkehren oder weiterziehen","Weil der Staat sie ausweist","Weil keine Jobs gefunden werden"],a:1},
-    {q:"Wie endete die Schwarzenbach-Initiative 1970?",opts:["Angenommen mit 70% Ja","Knapp angenommen (52% Ja)","Knapp abgelehnt (54% Nein)","Abgelehnt mit 80% Nein"],a:2},
-    {q:"Was war eine Folge des Rotationsprinzips für Gastarbeiterfamilien?",opts:["Bessere Schulen für Kinder","Familienzug war stark eingeschränkt oder verboten","Höhere Löhne als Einheimische","Schnelle Integration"],a:1},
-    {q:"Was versteht man unter 'Überfremdungsangst'?",opts:["Angst vor Ausreise","Angst dass zu viele Ausländer die Schweiz kulturell/wirtschaftlich verändern","Angst vor Terrorismus","Wirtschaftskrise durch Auswanderung"],a:1},
-    {q:"Warum war Assimilation problematisch?",opts:["Zu wenige Migranten nahmen teil","Einseitig – nur Migranten mussten sich ändern, nicht die Gesellschaft","Zu teuer für den Staat","Sprache war zu schwer"],a:1},
-    {q:"Was ist ein Nachteil der Migration für das Herkunftsland?",opts:["Mehr Steuereinnahmen","Bevölkerungswachstum","Verlust von Arbeitskräften und Steuereinnahmen","Bessere Infrastruktur"],a:2},
-    {q:"Welche ist die korrekte Reihenfolge der Ausbreitung von Homo erectus?",opts:["Afrika → Amerika → Asien","Afrika → Asien (1.8 Mio.) → Europa (1.5 Mio.)","Afrika → Europa → Asien","Asien → Afrika → Europa"],a:1},
-    {q:"Was bedeutet Familiennachzug?",opts:["Kinder werden deportiert","Familienmitglieder folgen dem Migranten ins neue Land","Schweizer heiraten Ausländer","Gemeinsame Auswanderung"],a:1},
-    {q:"Wofür stehen 60% der EU-Zuwanderer in die Schweiz?",opts:["Familiennachzug","Asyl","Erwerbstätigkeit","Aus-/Weiterbildung"],a:2},
-    {q:"Was machte die Beringstrasse zur Eiszeit besonders?",opts:["Sie war breiter als heute","Der Meeresspiegel war tiefer – sie war eine begehbare Landbrücke","Sie war von Eis befreit","Sie verband Amerika mit Europa"],a:1},
-    {q:"Warum gelten Senegalesen in Europa oft als nicht anerkannte Flüchtlinge?",opts:["Weil Senegal sicher ist","Weil sie meist wegen Armut/fehlender Perspektiven kommen, nicht wegen Verfolgung","Weil sie keine Papiere haben","Weil sie kein Französisch sprechen"],a:1},
-    {q:"Was ist ein Ziel der Lösungsansätze für Migration aus Senegal?",opts:["Mehr Grenzkontrollen in Europa","Mehr Arbeitsplätze und Perspektiven in Senegal schaffen","Alle Migranten zurückschicken","Senegal der EU beitreten lassen"],a:1},
-  ],
-  hard:[
-    {q:"Welcher Zusammenhang besteht zwischen Klimawandel und aufrechtem Gang der Hominiden?",opts:["Wärme machte Knochen stärker","Offene Savannen (durch Waldverlust) begünstigten den aufrechten Gang für bessere Sicht und Fortbewegung","Kältere Temperaturen zwangen Menschen aufrecht zu stehen","Kein Zusammenhang – rein genetisch"],a:1},
-    {q:"Warum besiedelte Homo erectus Asien vor Europa?",opts:["Europa war zu kalt","Die geografische Route von Afrika führt zuerst über den Nahen Osten nach Asien – Europa liegt abseits dieser Route","Europa war schon bewohnt","Homo erectus mied das Mittelmeer"],a:1},
-    {q:"Was erklärt die genetischen Unterschiede zwischen heutigen Menschengruppen am besten?",opts:["Verschiedene Ursprungsorte weltweit","Mehrere Wanderungswellen, geografische Isolation und Vermischung mit lokalen Gruppen wie Neandertalern","Unterschiedliche Ernährung","Klimatische Anpassung allein"],a:1},
-    {q:"Warum scheiterte die Assimilation in der Praxis oft, obwohl viele Migranten bemüht waren?",opts:["Migranten lernten die Sprache nicht","Gesellschaft verlangte perfekte Anpassung, akzeptierte angepasste Migranten aber trotzdem nicht vollständig","Staat gab kein Geld","Dialekte waren zu schwierig"],a:1},
-    {q:"Welche politische Bedeutung hatte die knappe Ablehnung der Schwarzenbach-Initiative?",opts:["Keine – sie hatte kaum Auswirkungen","Bewies dass Schweizer keine Ausländer wollten","Machte Überfremdungsangst politisch sichtbar und führte zu späteren strengeren Ausländerpolitiken","Initiative wurde danach einfach erneut eingereicht"],a:2},
-    {q:"Warum ist das Non-Refoulement-Prinzip in der Praxis komplex?",opts:["Es ist zu unbekannt","Staaten müssen im Einzelfall prüfen ob Verfolgung droht – bei sicheren Drittländern gilt es nicht, was zu Streit über 'Sicherheit' führt","Es gilt nur in Europa","Es wurde 2010 abgeschafft"],a:1},
-    {q:"Was ist der strukturelle Unterschied zwischen einem Wirtschaftsmigranten und einem Flüchtling?",opts:["Nur das Alter","Wirtschaftsmigrant wählt freiwillig, Flüchtling flieht aus begründeter Verfolgungsgefahr – kein echtes Zuhause mehr","Flüchtlinge kommen aus ärmeren Ländern","Kein Unterschied, beide wollen besseres Leben"],a:1},
-    {q:"Welcher Mechanismus erklärt, warum Remissen (Geldüberweisungen) sowohl Nutzen als auch Schaden bringen können?",opts:["Sie finanzieren Kriege","Nutzen: Familie im Herkunftsland unterstützt; Schaden: schafft Abhängigkeit, reduziert Druck auf lokale Wirtschaft sich zu entwickeln","Nur Nutzen – kein Schaden möglich","Nur für illegale Migranten relevant"],a:1},
-    {q:"Warum ist Bevölkerungswachstum in Senegal gleichzeitig Push-Faktor UND Hindernis für Lösungen?",opts:["Weil die Bevölkerung abnimmt","Zu viele junge Menschen ohne Jobs = Push; gleichzeitig erschwert Wachstum die Schaffung genug neuer Arbeitsplätze","Weil alte Menschen auswandern","Kein Zusammenhang"],a:1},
-    {q:"Was war der tiefere Widerspruch des Rotationsprinzips?",opts:["Gastarbeiter verdienten zu viel","Wirtschaft brauchte Arbeitskräfte dauerhaft, Politik wollte aber keine dauerhafte Einwanderung – System war strukturell inkohärent","Gastarbeiter wollten nicht bleiben","Familien kamen trotz Verbot"],a:1},
-    {q:"Warum gilt Australien als besonders bedeutsam für die Migrationsgeschichte?",opts:["Erste Besiedelung war europäisch","Besiedelung vor 50'000–60'000 Jahren zeigt frühzeitige maritime Fähigkeiten und ist eine der ältesten kontinuierlichen Kulturen","Australien wurde erst im 18. Jh. entdeckt","Keine besondere Bedeutung"],a:1},
-    {q:"Was unterscheidet Integrationspolitik von Assimilationspolitik grundlegend?",opts:["Nichts – beide bedeuten dasselbe","Integration = gegenseitige Anpassung; Assimilation = einseitige vollständige Anpassung der Migranten","Integration ist freiwillig, Assimilation gesetzlich","Integration gilt nur für Flüchtlinge"],a:1},
-    {q:"Welcher Art. der Genfer Konvention schützt Flüchtlinge vor Abschiebung und was sind die Grenzen?",opts:["Art. 1 – gilt absolut ohne Ausnahmen","Art. 33 (Non-Refoulement) – gilt nicht bei Abschiebung in sicheres Drittland oder wenn keine Verfolgung nachweisbar","Art. 5 – gilt nur innerhalb Europas","Art. 22 – gilt nur für Kinder"],a:1},
-    {q:"Welcher makroökonomische Mechanismus erklärt warum Zuwanderung die Schweizer Wirtschaft ankurbelt?",opts:["Ausländer zahlen keine Steuern","Zuwanderer erhöhen Arbeitskräfteangebot, Konsum, Steuereinnahmen und füllen Lücken in Berufsfeldern die Einheimische meiden","Zuwanderung senkt Löhne für alle","Nur Hochqualifizierte helfen der Wirtschaft"],a:1},
-    {q:"Was zeigt das Fallbeispiel Senegal über den Zusammenhang von Bildung und Migration?",opts:["Nur Ungebildete wandern aus","Selbst Gebildete mit Studium wandern aus, da Bildung allein ohne Jobmarkt keine Perspektive bietet","Bildung stoppt Migration komplett","Gebildete finden immer Jobs in Senegal"],a:1},
-    {q:"Warum führt der 'Rotations'-Gedanke langfristig zur Selbstunterhöhlung?",opts:["Weil Saisonniers zu gut integriert wurden","Weil Saisonniers nach mehreren Saisons faktisch dauerhafte Bindungen eingingen – Familie, Sozialnetz – was Rückkehr verhinderte und das System aushöhlte","Weil Arbeitgeber Festverträge ausstellten","Weil der Staat die Kontrolle verlor"],a:1},
-    {q:"Wie hängen Bevölkerungswachstum in der Schweiz und Migration strukturell zusammen?",opts:["Gar nicht","Schweizer Geburtenüberschuss ist negativ – ohne Zuwanderung würde die Bevölkerung schrumpfen; Migration kompensiert demografisches Defizit","Migration verlangsamt das Wachstum","Nur Asylmigration hat demografischen Effekt"],a:1},
-    {q:"Warum ist die Unterscheidung 'freiwillig vs. unfreiwillig' bei Migration oft unscharf?",opts:["Weil alle freiwillig migrieren","Extreme Armut, Klimawandel oder fehlende Perspektiven schränken die Wahlfreiheit so stark ein, dass 'Freiwilligkeit' fraglich ist","Weil Staaten alle Migration erzwingen","Weil Flüchtlinge immer Arbeit finden"],a:1},
-    {q:"Was war die tiefere gesellschaftliche Ursache der Schwarzenbach-Initiative?",opts:["Wirtschaftskrise","Angst vor Kulturverlust, Lohndruck und Überfremdung nach jahrzehntelanger Gastarbeiterpolitik ohne Integrationsangebote","Politische Isolation der Schweiz","Zu viele Flüchtlinge in den 1960ern"],a:1},
-    {q:"Welche Parallele besteht zwischen Schweizer Auswanderung vor 1880 und heutiger Migration aus Entwicklungsländern?",opts:["Keine – vollständig unterschiedlich","Beide folgen Push-Pull-Logik: strukturelle Armut, fehlende Perspektiven zuhause + Hoffnung auf bessere Chancen woanders – Muster ist universell","Schweizer wanderten aus politischen Gründen aus","Entwicklungsländer haben andere Motivation"],a:1},
-  ]
-};
-
-let qi=0,score=0,answered=false,activeDiff=null;
-
-function buildQuiz(){
-  const c=document.getElementById('quiz-container');
-  c.innerHTML=`
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Wähle deine Schwierigkeit:</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:8px">
-      <div onclick="startQuiz('easy')" style="cursor:pointer;background:var(--card);border:1.5px solid var(--green);border-radius:var(--radius);padding:18px 12px;text-align:center;transition:all .15s" onmouseover="this.style.background='var(--green-bg)'" onmouseout="this.style.background='var(--card)'">
-        <div style="font-size:24px;margin-bottom:6px">🟢</div>
-        <div style="font-weight:600;font-size:14px;color:var(--green)">Einfach</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">Grundwissen<br>Ziel: 4.0</div>
-      </div>
-      <div onclick="startQuiz('medium')" style="cursor:pointer;background:var(--card);border:1.5px solid var(--amber);border-radius:var(--radius);padding:18px 12px;text-align:center;transition:all .15s" onmouseover="this.style.background='var(--amber-bg)'" onmouseout="this.style.background='var(--card)'">
-        <div style="font-size:24px;margin-bottom:6px">🟡</div>
-        <div style="font-weight:600;font-size:14px;color:var(--amber)">Mittel</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">Details & Zusammenhänge<br>Ziel: 5.0</div>
-      </div>
-      <div onclick="startQuiz('hard')" style="cursor:pointer;background:var(--card);border:1.5px solid var(--red);border-radius:var(--radius);padding:18px 12px;text-align:center;transition:all .15s" onmouseover="this.style.background='var(--red-bg)'" onmouseout="this.style.background='var(--card)'">
-        <div style="font-size:24px;margin-bottom:6px">🔴</div>
-        <div style="font-weight:600;font-size:14px;color:var(--red)">Schwierig</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px">Analyse & Vertiefung<br>Ziel: 6.0</div>
-      </div>
-    </div>`;
-}
-
-function startQuiz(diff){
-  activeDiff=diff;qi=0;score=0;answered=false;renderQ();
-}
-
-function renderQ(){
-  const c=document.getElementById('quiz-container');
-  const bank=QUIZ[activeDiff];
-  const diffLabel=activeDiff==='easy'?'🟢 Einfach':activeDiff==='medium'?'🟡 Mittel':'🔴 Schwierig';
-  if(qi>=bank.length){
-    const pct=Math.round(score/bank.length*100);
-    const e=pct>=85?'🎉':pct>=65?'👍':'💪';
-    const note=pct>=90?'6.0':pct>=80?'5.5':pct>=70?'5.0':pct>=60?'4.5':pct>=50?'4.0':'3.5';
-    c.innerHTML=`<div class="result-box">
-      <div class="score">${e} ${score}/${bank.length}</div>
-      <p style="font-size:18px;font-weight:600;margin-bottom:6px">Geschätzte Note: <span style="color:${pct>=70?'var(--green)':pct>=50?'var(--amber)':'var(--red)'}">${note}</span></p>
-      <p>${pct}% richtig – ${pct>=85?'Ausgezeichnet!':pct>=65?'Gut gemacht!':'Weiter üben!'}</p>
-      <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-        <button class="restart" onclick="startQuiz('${activeDiff}')">↺ Nochmal (${diffLabel})</button>
-        <button class="restart" onclick="buildQuiz()">⬅ Schwierigkeit wechseln</button>
-      </div>
-    </div>`;return;
-  }
-  const item=bank[qi];const prog=Math.round(qi/bank.length*100);
-  c.innerHTML=`<div class="quiz-wrap">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-      <p class="progress">Frage ${qi+1} von ${bank.length}</p>
-      <span style="font-size:12px;color:var(--muted)">${diffLabel}</span>
+// ─── CRASH COURSE DATA ────────────────────────────────────────────
+const CK=[
+  {label:'Block 1 / 8 – Hominiden',title:'🦴 Hominiden-Migration',html:`
+    <ul><li>Ursprung: <strong>Afrika</strong> – „Wiege der Menschheit"</li>
+    <li>Homo erectus verlässt Afrika: vor <strong>über 2 Mio. Jahren</strong></li>
+    <li>Homo sapiens verlässt Afrika: ca. <strong>45'000 Jahre</strong></li>
+    <li>Amerika (Beringstrasse): <strong>60'000–20'000 Jahre</strong></li>
+    <li>Australien: <strong>50'000–60'000 Jahre</strong></li></ul>
+    <div class="info-box box-blue" style="margin-top:12px"><strong>Wie?</strong> Zu Fuss · Landbrücken (Eiszeit = tiefer Meeresspiegel) · einfache Boote</div>
+    <div class="info-box box-amber"><strong>Warum?</strong> Klimawandel → Savannen → Nahrungssuche → Tiere wandern → Menschen folgen</div>
+    <div class="info-box box-purple"><strong>Merke:</strong> Migration → Kontakt → Vermischung (Neandertaler-Gene!) → erklärt Unterschiede zwischen Menschen</div>`},
+  {label:'Block 2 / 8 – Push & Pull',title:'⬆️ Push & Pull Faktoren',html:`
+    <div class="two">
+      <div class="info-box box-red"><strong>PUSH = Gründe wegzugehen</strong><br>Krieg · Armut · Schlechte Jobs · Politische Unterdrückung · Hunger · Schlechte Gesetze</div>
+      <div class="info-box box-green"><strong>PULL = Gründe hinzugehen</strong><br>Bessere Jobs · Höherer Lohn · Sicherheit · Bessere Infrastruktur · Bürgergeld</div>
     </div>
-    <div class="prog-bar"><div class="prog-fill" style="width:${prog}%"></div></div>
-    <p class="q-txt">${item.q}</p>
-    ${item.opts.map((o,i)=>`<button class="opt" id="opt${i}" onclick="pick(${i})">${o}</button>`).join('')}
-    <button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">Weiter →</button>
-  </div>`;
-}
-
-function pick(i){
-  if(answered)return;answered=true;const item=QUIZ[activeDiff][qi];
-  if(i===item.a)score++;
-  document.querySelectorAll('.opt').forEach((b,idx)=>{b.disabled=true;if(idx===item.a)b.classList.add('correct');else if(idx===i)b.classList.add('wrong');});
-  document.getElementById('nextbtn').style.display='inline-block';
-}
-function nextQ(){qi++;answered=false;renderQ();}
-
-const CK_STEPS=[
-  {label:"Block 1 von 8 – Hominiden",title:"🦴 Wie Menschen die Welt besiedelten",html:`<ul><li>Ursprung: <strong>Afrika</strong> – Wiege der Menschheit</li><li>Homo erectus verlässt Afrika: vor <strong>über 2 Mio. Jahren</strong></li><li>Homo sapiens verlässt Afrika: ca. <strong>45'000 Jahre</strong></li><li>Amerika (Beringstrasse): <strong>60'000–20'000 Jahre</strong> | Australien: <strong>50'000–60'000 Jahre</strong></li></ul><div class="box box-blue"><strong>Wie?</strong> Zu Fuss, über Landbrücken (Eiszeit = tieferer Meeresspiegel), einfache Boote</div><div class="box box-amber"><strong>Warum?</strong> Klimawandel → Savannen → Nahrungssuche → Tiere wandern → Menschen folgen. Dazu: grösseres Gehirn, Bevölkerungsdruck.</div><div class="box box-purple"><strong>Merke:</strong> Migration → Gruppen treffen sich → Vermischung (Neandertaler-Gene!) → erklärt Unterschiede zwischen Menschen heute</div>`},
-  {label:"Block 2 von 8 – Push & Pull",title:"⬆️ Push & Pull Faktoren",html:`<div class="two"><div class="box box-red"><strong>PUSH = Gründe wegzugehen</strong><br>Krieg · Armut · Schlechte Jobs · Politische Unterdrückung · Schlechte Gesetze · Hunger</div><div class="box box-green"><strong>PULL = Gründe hinzugehen</strong><br>Bessere Jobs · Höherer Lohn · Sicherheit · Bessere Infrastruktur · Bürgergeld · Bessere Gesetze</div></div><div class="box box-amber"><strong>Prüfungstrick:</strong> Push = Probleme im Heimatland. Pull = Vorteile im Zielland.</div>`},
-  {label:"Block 3 von 8 – Vor & Nachteile",title:"⚖️ Vor- & Nachteile der Migration",html:`<table style="font-size:13px;width:100%;border-collapse:collapse;margin-top:8px"><tr><th style="background:#f8f7f4;padding:8px;border-bottom:1px solid #e0ddd6"></th><th style="background:#fdecea;padding:8px;border-bottom:1px solid #e0ddd6;color:#c0392b">Herkunftsland</th><th style="background:#e6f4ec;padding:8px;border-bottom:1px solid #e0ddd6;color:#1a7a4a">Zielland</th></tr><tr><td style="padding:8px;border-bottom:1px solid #e0ddd6;color:#6b6b67"><strong>Kosten</strong></td><td style="padding:8px;border-bottom:1px solid #e0ddd6;color:#6b6b67">Verlust Arbeitskräfte<br>Weniger Steuereinnahmen</td><td style="padding:8px;border-bottom:1px solid #e0ddd6;color:#6b6b67">Konkurrenz für Einheimische<br>Integrationskosten</td></tr><tr><td style="padding:8px;color:#6b6b67"><strong>Nutzen</strong></td><td style="padding:8px;color:#6b6b67">Weniger Arbeitslose<br>Geldüberweisungen</td><td style="padding:8px;color:#6b6b67">Brain gain<br>Mehr Steuereinnahmen<br>Wirtschaft wächst</td></tr></table>`},
-  {label:"Block 4 von 8 – Schweiz bis 1880",title:"🇨🇭 Schweiz: Auswanderung bis 1880",html:`<div class="box box-red"><strong>Warum wanderten Schweizer aus?</strong><br>Extreme Armut · Arbeitsmangel · Kaum Industrie · Bevölkerungswachstum</div><div class="box box-green"><strong>Ziel: Amerika</strong><br>Land der Möglichkeiten · Freie Flächen · Keine Einwanderungsschranken</div><div class="box box-amber"><strong>Beispiel:</strong> Kanton Aargau schickte 320 der ärmsten Einwohner nach Amerika.</div><ul style="margin-top:12px"><li><strong>Gewinner:</strong> Europäer, amerikanische Industrie</li><li><strong>Verlierer:</strong> Indigene Bevölkerung, Migranten mit falschen Erwartungen</li></ul>`},
-  {label:"Block 5 von 8 – Rotationsprinzip",title:"🏭 Einwanderung ab 1880 & Rotationsprinzip",html:`<div class="box box-blue"><strong>Ab ca. 1880:</strong> Industrialisierung – Schweiz braucht mehr Arbeitskräfte als vorhanden → wirbt im Ausland an.</div><div class="box box-amber"><strong>Rotationsprinzip (nach 1945):</strong> Saisonnier = max. <strong>9 Monate</strong> arbeiten, dann 3 Monate zurück. Familienzug verboten. Ziel: Arbeiter kommen – arbeiten – gehen.</div><div class="box box-red"><strong>Folgen für Gastarbeiter:</strong> Kein Familienleben · Unsicherheit · Ausbeutung · Tiefe Löhne</div><div class="box box-green"><strong>Gewinner:</strong> Schweizer Unternehmen, Staat<br><strong>Verlierer:</strong> Gastarbeiter & ihre Familien</div>`},
-  {label:"Block 6 von 8 – ANAG & Schwarzenbach",title:"📜 Assimilation, ANAG & Schwarzenbach",html:`<div class="box box-blue"><strong>Assimilation (1970er):</strong> Migranten sollen sich vollständig anpassen – Sprache, Kultur aufgeben, keine Kritik.<br><em>Problem: Einseitig, Identitätsverlust.</em></div><div class="box box-amber"><strong>ANAG (1931):</strong> Regelt Einreise · Aufenthalt · Ausweisung. Ziel: <strong>Migration begrenzen und steuern.</strong></div><div class="box box-red"><strong>Schwarzenbach-Initiative (1970):</strong> Max. <strong>10 %</strong> Ausländer pro Kanton. Knapp <strong>abgelehnt – 54 % Nein</strong>. Überfremdungsangst wird politisch sichtbar.</div>`},
-  {label:"Block 7 von 8 – Flüchtlinge",title:"📋 Flüchtlinge & Asyl",html:`<div class="box box-blue"><strong>Flüchtling (Genfer Konvention Art. 1):</strong> Jemand der <strong>verfolgt wird</strong> wegen Rasse, Religion, Nationalität, pol. Überzeugung oder soz. Gruppe – und Schutz im Ausland braucht.</div><div class="two"><div class="box box-green"><strong>✅ Ist Flüchtling:</strong><br>Verfolgt wegen Religion · Politik · Homosexualität</div><div class="box box-red"><strong>❌ Kein Flüchtling:</strong><br>Flieht NUR wegen Armut</div></div><div class="box box-purple"><strong>Non-Refoulement (Art. 33):</strong> Kein Staat darf einen Flüchtling abschieben, wenn sein Leben bedroht ist. Erlaubt: Abschiebung in sicheres Drittland.</div>`},
-  {label:"Block 8 von 8 – Senegal & Statistik",title:"🌍 Senegal + 📊 Statistik Schweiz",html:`<div class="box box-amber"><strong>Fallbeispiel Senegal:</strong> Meist junge Männer · Arbeitslos · Teilweise gebildet · Familie unterstützen.<br>Push: Arbeitslosigkeit, Armut. Pull: Hoffnung auf Arbeit, Europa = Erfolgsbild.<br>Realität: Oft illegal, schlechte Jobs, Angst vor Abschiebung.</div><div class="box box-blue"><strong>Statistik Schweiz:</strong><br>· Ohne Ausländer würde CH-Bevölkerung schrumpfen<br>· Netto ca. <strong>70'000</strong> Ausländer pro Jahr<br>· 2023: Rekord wegen Ukraine<br>· EU-Hauptgrund: <strong>Erwerbstätigkeit (65 %)</strong></div><div class="box box-green"><strong>Du bist bereit für die Prüfung! 💪</strong></div>`},
+    <div class="info-box box-amber"><strong>Prüfungstrick:</strong> Push = Probleme im Heimatland. Pull = Vorteile im Zielland.</div>`},
+  {label:'Block 3 / 8 – Vor- & Nachteile',title:'⚖️ Vor- & Nachteile der Migration',html:`
+    <table><tr><th></th><th style="color:var(--red)">Herkunftsland</th><th style="color:var(--green)">Zielland</th></tr>
+    <tr><td><strong>Kosten</strong></td><td>Verlust Arbeitskräfte<br>Weniger Steuereinnahmen</td><td>Konkurrenz Einheimische<br>Integrationskosten</td></tr>
+    <tr><td><strong>Nutzen</strong></td><td>Weniger Arbeitslose<br>Geldüberweisungen (Remissen)</td><td>Brain Gain<br>Mehr Steuereinnahmen<br>Wirtschaft wächst</td></tr></table>`},
+  {label:'Block 4 / 8 – Schweiz bis 1945',title:'🇨🇭 Schweiz: Auswanderung bis ~1880',html:`
+    <div class="info-box box-red"><strong>Warum wanderten Schweizer aus?</strong> Extreme Armut · Arbeitsmangel · Kaum Industrie · Bevölkerungswachstum</div>
+    <div class="info-box box-green"><strong>Ziel: Amerika</strong> → Land der unbeschränkten Möglichkeiten, freie Flächen, keine Einwanderungsschranken</div>
+    <div class="info-box box-amber"><strong>Beispiel:</strong> Kanton Aargau schickte 320 der ärmsten Einwohner nach Amerika.</div>
+    <div class="info-box box-blue" style="margin-top:6px"><strong>Ab 1880:</strong> Industrialisierung → Textilindustrie, Maschinenbau, Chemieindustrie wachsen → CH braucht ausländische Arbeitskräfte</div>
+    <div class="info-box box-purple"><strong>ANAG (1931):</strong> Regelt Einreise, Aufenthalt & Ausweisung. Ziel: Migration begrenzen und steuern.</div>`},
+  {label:'Block 5 / 8 – Rotationsprinzip',title:'🏭 Rotationsprinzip nach 1945',html:`
+    <div class="info-box box-amber"><strong>Rotationsprinzip:</strong> Saisonnier = max. <strong>9 Monate</strong> arbeiten, dann 3 Monate zurück. Familienzug verboten. Kommen – arbeiten – gehen.</div>
+    <div class="info-box box-red"><strong>Folgen für Gastarbeiter:</strong> Kein Familienleben · Unsicherheit · Ausbeutung · Keine Integration · Keine Rechte</div>
+    <div class="info-box box-green"><strong>Gewinner:</strong> Schweizer Unternehmen & Staat</div>
+    <div class="info-box box-red"><strong>Verlierer:</strong> Gastarbeiter & ihre Familien</div>`},
+  {label:'Block 6 / 8 – Assimilation & Schwarzenbach',title:'📜 Assimilation & Schwarzenbach-Initiative',html:`
+    <div class="info-box box-blue"><strong>Assimilation (1970er):</strong> Migranten sollen sich vollständig anpassen – Sprache, Kultur aufgeben. Problem: Einseitig → nur Migranten müssen sich ändern. Führt zu Identitätsverlust.</div>
+    <div class="info-box box-red"><strong>Schwarzenbach-Initiative (1970):</strong> Max. <strong>10 %</strong> Ausländer pro Kanton. Lanciert wegen Überfremdungsangst. Knapp <strong>abgelehnt (54 % Nein)</strong>. Zeigt: Thema Migration wird politisch.</div>`},
+  {label:'Block 7 / 8 – Flüchtlinge & Asyl',title:'📋 Flüchtlinge & Asyl',html:`
+    <div class="info-box box-blue"><strong>Flüchtling (GFK Art. 1):</strong> Jemand, der <em>verfolgt wird</em> wegen Rasse, Religion, Nationalität, pol. Überzeugung oder soz. Gruppe – und Schutz im Ausland braucht.</div>
+    <div class="two">
+      <div class="info-box box-green">✅ <strong>Ist Flüchtling:</strong><br>Verfolgt wegen Religion, Politik, Homosexualität</div>
+      <div class="info-box box-red">❌ <strong>Kein Flüchtling:</strong><br>Flieht NUR wegen Armut oder besserer Chancen</div>
+    </div>
+    <div class="info-box box-purple"><strong>Non-Refoulement (Art. 33):</strong> Kein Staat darf einen Flüchtling abschieben, wenn sein Leben/seine Freiheit bedroht ist. Erlaubt: Abschiebung in sicheres Drittland.</div>`},
+  {label:'Block 8 / 8 – Senegal & Statistik',title:'🌍 Senegal + 📊 Statistik CH',html:`
+    <div class="info-box box-amber"><strong>Senegal:</strong> Meist junge Männer · Arbeitslos/keine Perspektiven · Push: Armut, Bevölkerungswachstum · Pull: Hoffnung auf Arbeit, Europa = Erfolgsbild · Realität: oft illegal, schlechte Jobs, Angst vor Abschiebung</div>
+    <div class="info-box box-blue"><strong>Statistik CH:</strong> Ohne Ausländer würde CH-Bevölkerung schrumpfen · Netto ca. <strong>70'000</strong>/Jahr · 2023: Rekord (Ukraine) · EU-Hauptgrund: Erwerbstätigkeit (65 %)</div>
+    <div class="info-box box-green" style="text-align:center;font-weight:600">🎉 Du bist bereit für die Prüfung!</div>`},
 ];
 
 let ckStep=0;
 function ckReset(){ckStep=0;document.getElementById('ck-intro').style.display='block';document.getElementById('ck-running').style.display='none';document.getElementById('ck-done').style.display='none';}
 function ckStart(){document.getElementById('ck-intro').style.display='none';document.getElementById('ck-running').style.display='block';document.getElementById('ck-done').style.display='none';ckStep=0;ckRender();}
 function ckRender(){
-  const total=CK_STEPS.length;
-  document.getElementById('ck-fill').style.width=Math.round(ckStep/total*100)+'%';
-  document.getElementById('ck-prog-txt').textContent=(ckStep+1)+' / '+total;
+  const t=CK.length;
+  document.getElementById('ck-fill').style.width=Math.round(ckStep/t*100)+'%';
+  document.getElementById('ck-prog-txt').textContent=(ckStep+1)+' / '+t;
   document.getElementById('ck-prev').style.display=ckStep>0?'inline-block':'none';
-  document.getElementById('ck-next').textContent=ckStep===total-1?'Fertig ✓':'Weiter →';
-  const s=CK_STEPS[ckStep];
-  document.getElementById('ck-cards').innerHTML=`<div class="ck-card active"><p class="ck-step-label">${s.label}</p><h2 class="ck-title">${s.title}</h2><div class="ck-content">${s.html}</div></div>`;
+  document.getElementById('ck-next').textContent=ckStep===t-1?'Fertig ✓':'Weiter →';
+  const s=CK[ckStep];
+  document.getElementById('ck-cards').innerHTML=`<div class="ck-card-wrap"><p class="ck-step-label">${s.label}</p><h2 class="ck-title">${s.title}</h2><div class="ck-body">${s.html}</div></div>`;
 }
-function ckNav(dir){
-  ckStep+=dir;
-  if(ckStep>=CK_STEPS.length){document.getElementById('ck-running').style.display='none';document.getElementById('ck-done').style.display='block';return;}
+function ckNav(d){
+  ckStep+=d;
+  if(ckStep>=CK.length){document.getElementById('ck-running').style.display='none';document.getElementById('ck-done').style.display='block';return;}
   if(ckStep<0)ckStep=0;
   ckRender();
 }
 function ckRestart(){document.getElementById('ck-done').style.display='none';ckStart();}
+
+// ─── STANDARD SUMMARY CONTENT ─────────────────────────────────────
+const STD_PAGES={
+  'std-home':`<h2>Was lernst du heute?</h2>
+    <div class="ov-grid">
+      <div class="ov-card" onclick="stdGo('std-hom')"><div class="ov-icon">🦴</div><h3>Hominiden</h3><p>Ursprung, Ausbreitung, Gründe</p></div>
+      <div class="ov-card" onclick="stdGo('std-pp')"><div class="ov-icon">⬆️</div><h3>Push & Pull</h3><p>Faktoren & Vor-/Nachteile</p></div>
+      <div class="ov-card" onclick="stdGo('std-ch1')"><div class="ov-icon">🇨🇭</div><h3>Schweiz bis 1945</h3><p>Armut, ANAG, Industrialisierung</p></div>
+      <div class="ov-card" onclick="stdGo('std-ch2')"><div class="ov-icon">🏭</div><h3>Schweiz nach 1945</h3><p>Rotation, Assimilation, Schwarzenbach</p></div>
+      <div class="ov-card" onclick="stdGo('std-fl')"><div class="ov-icon">📋</div><h3>Flüchtlinge & Asyl</h3><p>GFK, Non-Refoulement</p></div>
+      <div class="ov-card" onclick="stdGo('std-sen')"><div class="ov-icon">🌍</div><h3>Fallbeispiel Senegal</h3><p>Migranten, Realität, Lösungen</p></div>
+      <div class="ov-card" onclick="stdGo('std-stat')"><div class="ov-icon">📊</div><h3>Statistik CH</h3><p>Zahlen und Fakten</p></div>
+      <div class="ov-card" onclick="stdGo('std-gloss')"><div class="ov-icon">📖</div><h3>Fachbegriffe</h3><p>Schwierige Begriffe erklärt</p></div>
+    </div>`,
+  'std-hom':`<h2>🦴 Hominiden-Migration</h2>
+    <div class="card"><h3>Ursprung & Zeitlinie</h3><ul>
+      <li>Ursprung: <strong>Afrika</strong> – „Wiege der Menschheit"</li>
+      <li>Erste Auswanderung: vor <strong>über 2 Mio. Jahren</strong> (Homo erectus)</li>
+      <li>Asien: ca. <strong>1.8 Mio. Jahre</strong> | Europa: ca. <strong>1.5 Mio. Jahre</strong></li>
+      <li>Homo sapiens verlässt Afrika: ca. <strong>45'000 Jahre</strong></li>
+      <li>Amerika (Beringstrasse): <strong>60'000–20'000 Jahre</strong></li>
+      <li>Australien: <strong>50'000–60'000 Jahre</strong></li>
+    </ul></div>
+    <div class="grid2">
+      <div class="card"><h3>Wie gewandert?</h3><ul><li>Zu Fuss (folgten Tieren/Nahrung)</li><li>Über <strong>Landbrücken</strong> (tieferer Meeresspiegel in Eiszeiten)</li><li>Teilweise mit einfachen Booten</li></ul></div>
+      <div class="card"><h3>Warum gewandert?</h3><ul><li>Klimawandel → Savannen entstehen</li><li>Nahrungssuche → Tiere wandern</li><li>Anpassungsfähigkeit → grösseres Gehirn</li><li>Bevölkerungsdruck / neue Lebensräume</li></ul></div>
+    </div>
+    <div class="info-box box-purple"><strong>Wichtige Zusammenhänge:</strong> Klimawandel → offene Landschaft → aufrechter Gang entsteht · Migration → Kontakt → Vermischung (Neandertaler-Gene!) · Mehrere Wanderungswellen → erklärt Unterschiede zwischen Menschen heute</div>`,
+  'std-pp':`<h2>⬆️ Push & Pull Faktoren</h2>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push – Gründe wegzugehen</h3>
+        <span class="tag t-red">Krieg</span><span class="tag t-red">Armut</span><span class="tag t-red">Schlechtes Leben</span><span class="tag t-red">Unterdrückung</span><span class="tag t-red">Schlechte Gesetze</span><span class="tag t-red">Hunger</span><span class="tag t-red">Arbeitslosigkeit</span>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull – Gründe hinzugehen</h3>
+        <span class="tag t-green">Bessere Jobs</span><span class="tag t-green">Höherer Lohn</span><span class="tag t-green">Sicherheit</span><span class="tag t-green">Bessere Infrastruktur</span><span class="tag t-green">Bürgergeld</span><span class="tag t-green">Bessere Gesetze</span>
+      </div>
+    </div>
+    <p class="sec-label">Vor- und Nachteile der Migration</p>
+    <div class="card"><table>
+      <tr><th></th><th>Herkunftsland</th><th>Zielland</th></tr>
+      <tr><td><strong>Kosten</strong></td><td>Verlust Arbeitskräfte<br>Weniger Steuereinnahmen</td><td>Konkurrenz für Einheimische<br>Integrationskosten</td></tr>
+      <tr><td><strong>Nutzen</strong></td><td>Arbeitslosenrate sinkt<br>Geldüberweisungen (Remissen)</td><td>Brain Gain<br>Mehr Steuereinnahmen<br>Wirtschaft wächst</td></tr>
+    </table></div>`,
+  'std-ch1':`<h2>🇨🇭 Schweiz bis 1945</h2>
+    <p class="sec-label">Auswanderung bis ~1880</p>
+    <div class="card"><h3>Warum wanderten Schweizer aus?</h3><ul>
+      <li>Extreme Armut in ländlichen Gebieten</li><li>Arbeitsmangel – kaum Industrie</li>
+      <li>Bevölkerungswachstum → zu wenig Land & Arbeit</li>
+      <li>Kinderarbeit, soziale Notlagen (z.B. Kaminfegerbuben in Italien)</li>
+    </ul><div class="info-box box-amber"><strong>Beispiel:</strong> Eine Gemeinde im Kanton Aargau schickte 320 ihrer ärmsten Einwohner nach Amerika, um die Armut loszuwerden.</div></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3>Push aus CH</h3><ul><li>Nahrungsmangel / Hunger</li><li>Arbeitsplatzmangel</li><li>Europäische Wirtschaftskrisen</li><li>Bevölkerungswachstum</li></ul></div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3>Pull nach USA</h3><ul><li>Land der unbeschränkten Möglichkeiten</li><li>Freie Flächen → Bauern</li><li>Industrialisierung brauchte Arbeitskräfte</li><li>Keine Einwanderungsschranken (19. Jh.)</li></ul></div>
+    </div>
+    <p class="sec-label">Einwanderung ab 1880</p>
+    <div class="card"><ul><li>Wachstum der Industrie: Textilindustrie, Maschinenbau, Chemieindustrie</li><li>Fabriken entstehen → viele neue Arbeitsplätze</li><li>Schweiz wird wirtschaftlich attraktiver → wirbt Arbeitskräfte im Ausland an</li></ul></div>
+    <p class="sec-label">Fremdenpolizei & ANAG</p>
+    <div class="card"><ul><li><strong>Fremdenpolizei:</strong> Staat beginnt Migration systematisch zu kontrollieren – Aufenthaltsbewilligungen, Registrierung</li><li><strong>ANAG (1931):</strong> Bundesgesetz über Aufenthalt und Niederlassung der Ausländer – regelt Einreise, Aufenthalt, Ausweisung. Ziel: Migration begrenzen und steuern, „unerwünschte" Personen fernhalten.</li></ul></div>`,
+  'std-ch2':`<h2>🏭 Schweiz nach 1945</h2>
+    <div class="card"><h3>Rotationsprinzip</h3><ul>
+      <li>Ausländische Arbeitskräfte (vor allem aus Italien) durften nur <strong>temporär</strong> bleiben</li>
+      <li>Saisonnier-Bewilligung: max. <strong>9 Monate</strong> Arbeit, dann 3 Monate Rückkehr ins Heimatland</li>
+      <li>Jahresbewilligung: verlängerbar, aber kein dauerhafter Verbleib</li>
+      <li><strong>Familienzug stark eingeschränkt oder verboten</strong></li>
+    </ul>
+    <div class="info-box box-red" style="margin-top:10px">Folgen: Kein Familienleben · Unsicherheit · Schlechte Unterkünfte · Keine Integration · Keine Rechte · Ausbeutung</div>
+    <table style="margin-top:12px"><tr><th>Gewinner</th><th>Verlierer</th></tr><tr><td>Schweizer Unternehmen<br>Staat (Steuern, Abgaben)<br>Konsum</td><td>Gastarbeiter/Familien<br>Arbeitgeber in Italien (Arbeitskräfteverlust)<br>Italienische Gesellschaft</td></tr></table></div>
+    <div class="card"><h3>Assimilation (1970er Jahre)</h3><ul>
+      <li>Migranten sollen sich <strong>vollständig</strong> an die Schweizer Gesellschaft anpassen</li>
+      <li>CH-Sprache lernen · eigene Kultur aufgeben · Gesetze strikt einhalten · kein Auffallen</li>
+    </ul><div class="info-box box-red" style="margin-top:10px"><strong>Probleme:</strong> Einseitig – nur Migranten müssen sich ändern · Identitätsverlust · Psychische Belastung · Auch angepasste Migranten werden nicht vollständig akzeptiert</div></div>
+    <div class="card"><h3>Schwarzenbach-Initiative (1970)</h3><ul>
+      <li>Lanciert von James Schwarzenbach</li><li>Forderung: max. <strong>10 % Ausländer</strong> pro Kanton</li>
+      <li>Knapp <strong>abgelehnt – 54 % Nein</strong></li>
+      <li>Zeigt: Überfremdungsangst wird politisch sichtbar · Migration wird zentrales Thema · führt zu späteren strengeren Ausländerpolitiken</li>
+    </ul></div>`,
+  'std-fl':`<h2>📋 Flüchtlinge & Asyl</h2>
+    <div class="card" style="border-left:3px solid var(--blue)"><h3>Definition Flüchtling – GFK Art. 1</h3><p>Ein Flüchtling ist jemand, der:</p><ul>
+      <li>Nicht sicher in seinem Heimatland ist</li><li>Verfolgt wird oder ernsthafte Angst davor hat</li><li>Deshalb ins Ausland flieht und Schutz braucht</li>
+    </ul></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">✅ Ist Flüchtling</h3><ul><li>Eine Frau wird wegen politischem Engagement verfolgt</li><li>Ein Mann wird wegen seiner Religion bedroht</li><li>Eine Person wird wegen Homosexualität verfolgt</li></ul></div>
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">❌ Kein Flüchtling</h3><ul><li>Jemand flieht nur wegen Armut oder Arbeitslosigkeit</li><li>Jemand sucht bessere Lebensbedingungen ohne Verfolgung</li></ul></div>
+    </div>
+    <div class="card"><h3>Non-Refoulement – Art. 33 GFK</h3><p style="margin-bottom:8px">Kein Staat darf einen Flüchtling abschieben, wenn dort sein Leben oder seine Freiheit bedroht ist wegen:</p>
+    <span class="tag t-blue">Rasse</span><span class="tag t-blue">Religion</span><span class="tag t-blue">Nationalität</span><span class="tag t-blue">Pol. Überzeugung</span><span class="tag t-blue">Soz. Gruppe</span>
+    <div class="info-box box-green" style="margin-top:10px">✅ Verboten: Abschieben wenn Gefängnis oder Tod droht</div>
+    <div class="info-box box-amber">⚠️ Erlaubt: Abschiebung in sicheres Drittland · Ablehnung wenn keine Verfolgung nachweisbar</div></div>`,
+  'std-sen':`<h2>🌍 Fallbeispiel Senegal</h2>
+    <div class="card"><h3>Typische Migranten</h3><ul><li>Meist junge Männer</li><li>Oft arbeitslos oder ohne Perspektiven</li><li>Teilweise gebildet (Studium), aber keine Jobs</li><li>Wollen ihre Familien finanziell unterstützen</li></ul></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push (Senegal)</h3><ul><li>Arbeitslosigkeit / fehlende Perspektiven</li><li>Starkes Bevölkerungswachstum</li><li>Armut und fehlende Chancen</li><li>Unzufriedenheit mit Politik</li></ul></div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull (Europa)</h3><ul><li>Hoffnung auf Arbeit und Geld</li><li>Bild von Europa als Ort des Erfolgs</li><li>Migration gilt als sozialer Aufstieg</li><li>Möglichkeit, Geld nach Hause zu schicken</li></ul></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)"><h3 style="color:var(--amber)">Realität in Europa</h3><ul><li>Oft illegales Leben ohne Aufenthaltsbewilligung</li><li>Schlechte Jobs / Gelegenheitsarbeit</li><li>Unsicherheit, Angst vor Abschiebung</li><li>Viele scheitern oder werden zurückgeschickt</li></ul></div>
+    <div class="card"><h3>Lösungsansätze</h3><div class="grid2"><div><strong>🇸🇳 Senegal:</strong><ul><li>Mehr Arbeitsplätze schaffen</li><li>Bessere Perspektiven für Jugendliche</li></ul></div><div><strong>🇪🇺 Europa:</strong><ul><li>Faire Migrationspolitik</li><li>Legale Wege zur Migration</li><li>Entwicklungshilfe vor Ort</li></ul></div></div></div>`,
+  'std-stat':`<h2>📊 Statistik Migration Schweiz</h2>
+    <div class="card"><h3>Bevölkerungswachstum</h3><p>Ohne Ausländerinnen und Ausländer würde die Bevölkerung der Schweiz schrumpfen. Der Geburtenüberschuss der Schweizer ist negativ. Die Zuwanderung kompensiert dieses demografische Defizit.</p></div>
+    <div class="card" style="border-left:3px solid var(--blue)"><h3>Rekord-Zuwanderung 2023</h3><ul><li>Jährlich netto ca. <strong>70'000</strong> Ausländer</li><li><strong>60 %</strong> aus EU/Efta-Raum, <strong>40 %</strong> aus Drittstaaten</li><li>2023: Rekordwert wegen Ukraine-Geflüchteten (+51'000)</li></ul></div>
+    <div class="card"><h3>Einwanderungsgründe 2010–2024</h3><table>
+      <tr><th>Grund</th><th>EU/Efta</th><th>Drittstaaten</th></tr>
+      <tr><td>Erwerbstätigkeit</td><td>65 %</td><td>29 %</td></tr>
+      <tr><td>Familiennachzug</td><td>22 %</td><td>47 %</td></tr>
+      <tr><td>Aus-/Weiterbildung</td><td>7 %</td><td>8 %</td></tr>
+      <tr><td>Asylbereich</td><td>–</td><td>8 %</td></tr>
+    </table></div>
+    <div class="card"><h3>Verbleib ist oft temporär</h3><p>Von den 2009 eingewanderten Personen lebt 2023 gut die Hälfte noch im Land; 15 % sind eingebürgert. Ob Zugewanderte langfristig bleiben, hängt wesentlich vom Einwanderungsgrund ab.</p></div>`,
+  'std-gloss':''// built dynamically
+};
+
+function buildGlossPage(id,nav,container){
+  const html=buildGlossHTML();
+  if(id==='std-gloss') STD_PAGES['std-gloss']=html;
+  else FULL_PAGES['full-gloss']=html;
+}
+function buildGlossHTML(){
+  return `<h2>📖 Fachbegriffe erklärt</h2>`+GLOSSARY.map(g=>`
+    <div class="gloss-item">
+      <div class="gloss-term">${g.term}</div>
+      <div class="gloss-def">${g.def}</div>
+      ${g.ex?`<div class="gloss-ex">Beispiel: ${g.ex}</div>`:''}
+    </div>`).join('');
+}
+
+const GLOSSARY=[
+  {term:'Migration',def:'Das Wandern von Menschen von einem Ort zu einem anderen – innerhalb eines Landes (Binnenmigration) oder über Grenzen hinweg (internationale Migration).'},
+  {term:'Push-Faktor',def:'Ein Grund, der Menschen dazu bringt, ihr Heimatland zu verlassen. Push = „weggedrückt werden".',ex:'Krieg, Armut, politische Unterdrückung'},
+  {term:'Pull-Faktor',def:'Ein Grund, der Menschen in ein bestimmtes Land zieht. Pull = „angezogen werden".',ex:'Bessere Jobs, Sicherheit, höherer Lebensstandard'},
+  {term:'Saisonnier',def:'Ein ausländischer Arbeitnehmer mit einer befristeten Aufenthaltsbewilligung (max. 9 Monate). Durfte keine Familie nachholen.'},
+  {term:'Rotationsprinzip',def:'Politisches Prinzip: Ausländische Arbeiter kommen temporär, arbeiten und gehen wieder. Ziel war es, dauerhafte Einwanderung zu verhindern.'},
+  {term:'ANAG',def:'Bundesgesetz über Aufenthalt und Niederlassung der Ausländer (1931). Regelt, wer in die Schweiz einreisen, bleiben und wer ausgewiesen werden kann.'},
+  {term:'Assimilation',def:'Vollständige Anpassung von Migranten an die Mehrheitsgesellschaft – Sprache, Kultur, Normen. Kritik: Einseitig und führt zu Identitätsverlust.'},
+  {term:'Integration',def:'Gegenseitige Anpassung: Migranten passen sich an, aber die Gesellschaft öffnet sich auch. Unterschied zur Assimilation: Es ist ein beidseitiger Prozess.'},
+  {term:'Überfremdungsangst',def:'Die Angst, dass zu viele Ausländer die eigene Kultur, Wirtschaft oder Gesellschaft negativ verändern. War politisch wichtig in den 1960er/70er Jahren in der Schweiz.'},
+  {term:'Schwarzenbach-Initiative',def:'Volksinitiative von 1970 (lanciert von James Schwarzenbach), die den Ausländeranteil auf max. 10 % pro Kanton begrenzen wollte. Knapp abgelehnt (54 % Nein).'},
+  {term:'Flüchtling',def:'Eine Person, die ihr Heimatland wegen Verfolgung verlassen hat und im Ausland Schutz sucht. Definition nach Genfer Flüchtlingskonvention (GFK) Art. 1.'},
+  {term:'Genfer Flüchtlingskonvention (GFK)',def:'Internationales Abkommen von 1951, das definiert, wer ein Flüchtling ist und welche Rechte er hat. Wichtigste Artikel: Art. 1 (Definition) und Art. 33 (Non-Refoulement).'},
+  {term:'Non-Refoulement',def:'Grundsatz aus Art. 33 der GFK: Kein Staat darf einen Flüchtling in ein Land abschieben, in dem sein Leben oder seine Freiheit bedroht ist.',ex:'Ein Oppositioneller darf nicht in sein Heimatland abgeschoben werden, wenn ihm dort Gefängnis droht.'},
+  {term:'Asyl',def:'Schutz, den ein Staat einer verfolgten Person gewährt. Wer Asyl erhält, bekommt das Recht, im Land zu bleiben und wird als Flüchtling anerkannt.'},
+  {term:'Drittstaat',def:'Ein Land, das nicht zum direkten Herkunfts- oder Zielland zählt. Im Asylrecht: Ein „sicherer Drittstaat" ist ein Land, durch das ein Flüchtling bereits gereist ist und in dem er hätte Schutz beantragen können.'},
+  {term:'Remissen',def:'Geldüberweisungen von Migranten an ihre Familien im Heimatland. Wichtige Einnahmequelle für viele Entwicklungsländer, kann aber auch Abhängigkeit erzeugen.'},
+  {term:'Brain Gain',def:'Zuwanderung von qualifizierten Fachkräften ins Zielland – positiv für die Wirtschaft. Gegenteil: Brain Drain (Verlust von Fachkräften im Herkunftsland).'},
+  {term:'Brain Drain',def:'Der Verlust von gut ausgebildeten Fachkräften durch Auswanderung – negativ für das Herkunftsland.',ex:'Viele Ärzte und Ingenieure verlassen ihr Land, weil sie im Ausland mehr verdienen.'},
+  {term:'Familienzug / Familiennachzug',def:'Das Recht von Migranten, ihre Familienmitglieder nachzuholen. Unter dem Rotationsprinzip war dies stark eingeschränkt oder verboten.'},
+  {term:'Hominiden',def:'Die Familie der Menschenartigen, zu der alle Vorfahren des modernen Menschen gehören (z.B. Homo erectus, Homo sapiens, Neandertaler).'},
+  {term:'Homo erectus',def:'Frühe Menschenart, die vor über 2 Millionen Jahren erstmals Afrika verliess und sich nach Asien und Europa ausbreitete.'},
+  {term:'Beringstrasse',def:'Meerenge zwischen Sibirien und Alaska. Während der Eiszeit war der Meeresspiegel tiefer – es gab eine Landbrücke, über die Menschen nach Amerika wandern konnten.'},
+  {term:'Wanderungssaldo',def:'Differenz zwischen Einwanderung und Auswanderung. Positiver Saldo = mehr Menschen kommen als gehen.'},
+];
+
+let stdCurrent='std-home';
+function buildStd(){
+  buildGlossPage('std-gloss');
+  const main=document.getElementById('std-main');
+  main.innerHTML='';
+  Object.keys(STD_PAGES).forEach(id=>{
+    const div=document.createElement('div');
+    div.id=id;div.className='page';
+    div.innerHTML=STD_PAGES[id];
+    main.appendChild(div);
+  });
+}
+function stdGo(id){
+  stdCurrent=id;
+  document.querySelectorAll('#std-main .page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el){el.classList.add('active');window.scrollTo(0,0);}
+  document.querySelectorAll('#std-nav button').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('onclick')===`stdGo('${id}')`);
+  });
+}
+
+// ─── FULL SUMMARY ─────────────────────────────────────────────────
+const FULL_PAGES={
+  'full-home':`<h2>Was lernst du heute?</h2>
+    <div class="ov-grid">
+      <div class="ov-card" onclick="fullGo('full-hom')"><div class="ov-icon">🦴</div><h3>Hominiden</h3><p>Ursprung, Zeitlinie, Zusammenhänge</p></div>
+      <div class="ov-card" onclick="fullGo('full-pp')"><div class="ov-icon">⬆️</div><h3>Push & Pull</h3><p>Faktoren, Tabellen, Beispiele</p></div>
+      <div class="ov-card" onclick="fullGo('full-ch1')"><div class="ov-icon">🇨🇭</div><h3>Schweiz bis 1945</h3><p>Armut, Industrialisierung, ANAG</p></div>
+      <div class="ov-card" onclick="fullGo('full-ch2')"><div class="ov-icon">🏭</div><h3>Schweiz nach 1945</h3><p>Rotation, Assimilation, Schwarzenbach</p></div>
+      <div class="ov-card" onclick="fullGo('full-fl')"><div class="ov-icon">📋</div><h3>Flüchtlinge & Asyl</h3><p>GFK vollständig, Beispiele</p></div>
+      <div class="ov-card" onclick="fullGo('full-sen')"><div class="ov-icon">🌍</div><h3>Fallbeispiel Senegal</h3><p>Vollständige Analyse</p></div>
+      <div class="ov-card" onclick="fullGo('full-stat')"><div class="ov-icon">📊</div><h3>Statistik CH</h3><p>Alle Zahlen und Zusammenhänge</p></div>
+      <div class="ov-card" onclick="fullGo('full-karten')"><div class="ov-icon">🃏</div><h3>Lernkarten</h3><p>Karte anklicken → Antwort</p></div>
+      <div class="ov-card" onclick="fullGo('full-gloss')"><div class="ov-icon">📖</div><h3>Fachbegriffe</h3><p>Alle wichtigen Begriffe erklärt</p></div>
+    </div>`,
+  'full-hom':`<h2>🦴 Migration der Hominiden</h2>
+    <div class="card"><h3>Ursprung & detaillierte Zeitlinie</h3><ul>
+      <li>Ursprung: <strong>Afrika</strong> – „Wiege der Menschheit"</li>
+      <li>Erste Auswanderung (Homo erectus): vor <strong>über 2 Mio. Jahren</strong></li>
+      <li>Ausbreitung nach <strong>Asien: ca. 1.8 Mio. Jahre</strong></li>
+      <li>Ausbreitung nach <strong>Europa: ca. 1.5 Mio. Jahre</strong></li>
+      <li>Homo sapiens verlässt Afrika: ca. <strong>45'000 Jahre</strong></li>
+      <li>Amerika über Beringstrasse: ca. <strong>60'000–20'000 Jahre</strong></li>
+      <li>Australien: ca. <strong>50'000–60'000 Jahre</strong> (erforderte frühe Schifffahrt)</li>
+    </ul></div>
+    <div class="grid2">
+      <div class="card"><h3>Wie wurde gewandert?</h3><ul><li>Zu Fuss – folgten Tieren & Nahrungsquellen</li><li>Über <strong>Landbrücken</strong> (Eiszeiten senkten Meeresspiegel)</li><li>Teilweise mit einfachen Booten (Australien)</li></ul></div>
+      <div class="card"><h3>Warum verbreiteten sie sich?</h3><ul><li>Klimawandel (Eiszeit) → Wälder verschwinden, Savannen entstehen</li><li>Nahrungssuche → Tiere wandern → Menschen folgen</li><li>Anpassungsfähigkeit → grösseres Gehirn, Werkzeuggebrauch</li><li>Bevölkerungsdruck / neue Lebensräume gesucht</li></ul></div>
+    </div>
+    <p class="sec-label">Wichtige Zusammenhänge – Prüfungsrelevant</p>
+    <div class="info-box box-purple">
+      <ul style="margin:0;padding-left:16px">
+        <li>Klimawandel → offene Landschaft → <strong>aufrechter Gang entsteht</strong> (bessere Sicht in Savannen)</li>
+        <li>Migration → Kontakt zwischen Gruppen → <strong>Vermischung</strong> (z.B. Neandertaler-Gene in heutigen Menschen)</li>
+        <li>Mehrere Wanderungswellen + geografische Isolation → erklärt <strong>Unterschiede zwischen Menschengruppen heute</strong></li>
+        <li>Australien zeigt: frühe <strong>maritime Fähigkeiten</strong> – eine der ältesten kontinuierlichen Kulturen</li>
+      </ul>
+    </div>`,
+  'full-pp':`<h2>⬆️ Push & Pull Faktoren</h2>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push – Gründe wegzugehen</h3>
+        <span class="tag t-red">Krieg & Konflikte</span><span class="tag t-red">Armut</span><span class="tag t-red">Schlechtes Leben</span><span class="tag t-red">Unterdrückung</span><span class="tag t-red">Schlechte Gesetze</span><span class="tag t-red">Hunger</span><span class="tag t-red">Arbeitslosigkeit</span><span class="tag t-red">Mangel an Perspektiven</span>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull – Gründe hinzugehen</h3>
+        <span class="tag t-green">Bessere Jobs</span><span class="tag t-green">Höherer Lohn</span><span class="tag t-green">Sicherheit</span><span class="tag t-green">Bessere Infrastruktur</span><span class="tag t-green">Bürgergeld</span><span class="tag t-green">Bessere Gesetze</span><span class="tag t-green">Bessere Bildung</span><span class="tag t-green">Sozialer Aufstieg</span>
+      </div>
+    </div>
+    <p class="sec-label">Vollständige Analyse: Vor- und Nachteile</p>
+    <div class="card"><table>
+      <tr><th></th><th>Herkunftsland</th><th>Zielland</th></tr>
+      <tr><td><strong>Kosten</strong></td><td>Verlust von Arbeitskräften (Brain Drain)<br>Geringere Steuereinnahmen<br>Arbeitskräftemangel in Schlüsselbranchen</td><td>Weniger freie Stellen<br>Konkurrenz für einheimische Arbeitnehmer<br>Wachsende Bevölkerung<br>Integrationskosten</td></tr>
+      <tr><td><strong>Nutzen</strong></td><td>Arbeitslosenrate sinkt<br>Geldüberweisungen (Remissen) → Familien unterstützt<br>Mehr Platz / weniger Ressourcendruck</td><td>Bessere Lebensstandards<br>Brain Gain (qualifizierte Fachkräfte)<br>Mehr Steuereinnahmen<br>Wirtschaft wächst<br>Füllt Lücken in Berufsfeldern</td></tr>
+    </table></div>
+    <div class="info-box box-amber"><strong>Wichtig:</strong> Die Unterscheidung „freiwillig vs. unfreiwillig" ist oft unscharf. Extreme Armut oder fehlende Perspektiven schränken die Wahlfreiheit so stark ein, dass echte Freiwilligkeit fraglich ist.</div>`,
+  'full-ch1':`<h2>🇨🇭 Migration Schweiz bis 1945</h2>
+    <p class="sec-label">Phase 1: Armutsauswanderung bis ~1880</p>
+    <div class="card"><h3>Gründe der Auswanderung</h3><ul>
+      <li>Viele Menschen lebten in <strong>extremer Armut</strong>, besonders in ländlichen Gebieten</li>
+      <li>Bevölkerungswachstum → zu wenig Land und Arbeit für alle</li>
+      <li>Familien konnten sich kaum ernähren</li>
+      <li>Kaum Industrie → wenig Arbeitsplätze</li>
+      <li>Viele mussten sich als Söldner oder Wanderarbeiter verdingen</li>
+      <li>Soziale Notlagen: Kinderarbeit (z.B. Kaminfegerbuben in Italien)</li>
+      <li>Familien gaben Kinder weg, um weniger Esser zu haben</li>
+    </ul>
+    <div class="info-box box-amber"><strong>Konkretes Beispiel:</strong> Eine Gemeinde im Kanton Aargau schickte 320 ihrer ärmsten Einwohner nach Amerika, um die Armut loszuwerden.</div></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3>Push aus CH</h3><ul><li>Nahrungsmangel / Hunger</li><li>Arbeitsplatzmangel</li><li>Europäische Wirtschaftskrisen</li><li>Bevölkerungswachstum</li><li>Billige Überfahrt mit Dampfschiffen möglich</li></ul></div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3>Pull nach USA</h3><ul><li>Land der unbeschränkten Möglichkeiten</li><li>Freie Flächen → Bauern können Land bekommen</li><li>Industrialisierung brauchte Arbeitskräfte</li><li>Im 19. Jh. keine Einwanderungsschranken</li><li>Goldrausch half wenigen zum Aufstieg</li></ul></div>
+    </div>
+    <div class="card"><table><tr><th>Gewinner</th><th>Verlierer</th></tr>
+    <tr><td>Europäer (Land, Jobs)<br>Amerikanische Industrie/Landwirtschaft</td><td>Indigene Bevölkerung (Zwangsarbeit, Vertreibung)<br>Europäer mit falschen Erwartungen (Lienhart-Fall)<br>Gescheiterte Migranten</td></tr></table></div>
+    <p class="sec-label">Phase 2: Einwanderung ab 1880</p>
+    <div class="card"><h3>Industrialisierung der Schweiz</h3><ul>
+      <li>Textilindustrie, Maschinenbau, Chemieindustrie wachsen stark</li>
+      <li>Fabriken entstehen → viele neue Arbeitsplätze</li>
+      <li>Schweiz wird wirtschaftlich attraktiver</li>
+      <li>Die Schweiz beginnt, <strong>Arbeitskräfte aus dem Ausland anzuwerben</strong></li>
+      <li>Ausbau von Eisenbahn, Infrastruktur, Städten → mehr Mobilität</li>
+    </ul></div>
+    <p class="sec-label">Fremdenpolizei & ANAG</p>
+    <div class="card"><h3>Staatliche Kontrolle der Migration</h3><ul>
+      <li>Staat beginnt Migration <strong>systematisch zu überwachen</strong></li>
+      <li>Einführung: Aufenthaltsbewilligungen · Registrierung von Ausländern</li>
+      <li>Ziel: Kontrolle darüber, wer ins Land kommt und bleibt</li>
+      <li>Schutz von Arbeitsmarkt und Ordnung</li>
+    </ul>
+    <div class="info-box box-blue"><strong>ANAG = Bundesgesetz über Aufenthalt und Niederlassung der Ausländer (1931)</strong><br>Klare Regeln für: Einreise · Aufenthalt · Ausweisung. Starke Rolle der Behörden. Ziel: Migration <strong>begrenzen und steuern</strong>, „unerwünschte" Personen fernhalten.</div></div>`,
+  'full-ch2':`<h2>🏭 Migration Schweiz nach 1945</h2>
+    <p class="sec-label">Das Rotationsprinzip</p>
+    <div class="card"><h3>Wie funktionierte es?</h3><ul>
+      <li>Ausländische Arbeitskräfte (vor allem aus Italien) durften nur <strong>temporär</strong> in der Schweiz arbeiten</li>
+      <li>Viele erhielten nur eine <strong>Saisonnier-Bewilligung</strong>: max. 9 Monate Arbeit, dann 3 Monate zurück</li>
+      <li>Andere hatten eine <strong>Jahresbewilligung</strong>, die verlängert werden konnte</li>
+      <li><strong>Familienzug stark eingeschränkt oder verboten</strong></li>
+      <li>Idee: Arbeiter kommen – arbeiten – gehen (Rotation)</li>
+    </ul></div>
+    <div class="card"><h3>Folgen für Gastarbeiter</h3>
+    <div class="info-box box-red">Kein Familienleben · Lange Trennungen · Unsicherheit (nur temporärer Aufenthalt) · Schlechte Unterkünfte · Keine Integration · Keine Rechte · Ausbeutung · Tiefe Löhne</div>
+    <table style="margin-top:12px"><tr><th>Gewinner</th><th>Verlierer</th></tr>
+    <tr><td>Schweizer Unternehmen<br>Staat (Steuern, Abgaben)<br>Konsum<br>Italienischer Staat (Remissen)<br>Infrastruktur wächst</td><td>Gastarbeiter & Familien<br>Arbeitgeber in Italien (Arbeitskräfteverlust)<br>Italienische Gesellschaft (junge Arbeitslose gehen)<br>Entwicklungspotenzial sinkt</td></tr></table></div>
+    <div class="info-box box-purple"><strong>Struktureller Widerspruch:</strong> Die Wirtschaft brauchte Arbeitskräfte dauerhaft, die Politik wollte aber keine dauerhafte Einwanderung. Saisonniers gingen nach mehreren Saisons faktische Bindungen ein (Familie, Sozialnetz) – was Rückkehr verhinderte und das System aushöhlte.</div>
+    <p class="sec-label">Assimilation in den 1970er Jahren</p>
+    <div class="card"><h3>Was wurde verlangt?</h3><ul>
+      <li>CH-Sprache lernen (inkl. Dialekt verstehen)</li><li>Eigene Kultur zurückstellen / aufgeben</li>
+      <li>Gesetze und Normen strikt einhalten</li><li>Arbeiten, zuverlässig sein, nicht auffallen</li>
+      <li>Keine Kritik an der Schweiz, politisch zurückhaltend sein</li>
+      <li>Ziel: Migranten sollen möglichst „wie Schweizer" werden</li>
+    </ul></div>
+    <div class="card"><h3>Probleme und Grenzen der Assimilation</h3>
+    <div class="info-box box-red">Aufgabe der eigenen Identität → Verlust von Kultur, Sprache, Traditionen · Einseitige Anpassung → nur Migranten müssen sich ändern, nicht die Gesellschaft · Unrealistische Erwartungen · Ausgrenzung bleibt trotzdem · Psychische Belastung · Auch angepasste Migranten werden oft nicht vollständig akzeptiert</div></div>
+    <p class="sec-label">Schwarzenbach-Initiative 1970</p>
+    <div class="card"><ul>
+      <li>Lanciert von <strong>James Schwarzenbach</strong></li>
+      <li>Forderung: Anteil der Ausländer in jedem Kanton auf max. <strong>10 % begrenzen</strong></li>
+      <li>Ziele: Reduktion der Zahl der Migrantinnen · Schutz der „Schweizer Identität" · Reaktion auf Angst vor Arbeitsplatzverlust, Wohnungsnot, kultureller Veränderung</li>
+      <li>Abstimmung 1970: Knapp <strong>abgelehnt – 54 % Nein</strong></li>
+    </ul>
+    <div class="info-box box-amber"><strong>Bedeutung:</strong> Überfremdungsangst wird politisch sichtbar · Thema Migration wird zentral in der Politik · Führt zu späteren strengeren Ausländerpolitiken · Migrantinnen werden oft als Sündenböcke dargestellt</div></div>`,
+  'full-fl':`<h2>📋 Flüchtlinge & Asyl</h2>
+    <div class="card" style="border-left:3px solid var(--blue)"><h3>Definition Flüchtling – Art. 1 GFK</h3><p>Ein Flüchtling ist jemand, der:</p><ul>
+      <li>Nicht sicher in seinem Heimatland ist</li>
+      <li>Verfolgt wird oder ernsthafte Angst davor hat</li>
+      <li>Deshalb ins Ausland flieht und Schutz braucht</li>
+    </ul><p style="margin-top:8px">Verfolgungsgründe nach GFK: <span class="tag t-blue">Rasse</span><span class="tag t-blue">Religion</span><span class="tag t-blue">Nationalität</span><span class="tag t-blue">Pol. Überzeugung</span><span class="tag t-blue">Soz. Gruppe</span></p></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">✅ Ist Flüchtling</h3><ul>
+        <li>Eine Frau wird wegen politischem Engagement verfolgt</li>
+        <li>Ein Mann wird wegen seiner Religion bedroht</li>
+        <li>Eine Person wird wegen Homosexualität verfolgt</li>
+        <li>Ein Oppositioneller, dem Gefängnis oder Tod droht</li>
+      </ul></div>
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">❌ Kein Flüchtling</h3><ul>
+        <li>Jemand flieht nur wegen Armut oder Arbeitslosigkeit</li>
+        <li>Jemand sucht bessere Lebensbedingungen ohne Verfolgung</li>
+        <li>Kein Nachweis von Verfolgung möglich</li>
+      </ul></div>
+    </div>
+    <div class="card"><h3>Non-Refoulement – Art. 33 GFK</h3><p style="margin-bottom:10px">Das <strong>Rückführungsverbot</strong> besagt: Ein Staat darf <strong>keinen Flüchtling abschieben oder zurückweisen</strong>, wenn dort sein Leben oder seine Freiheit bedroht ist.</p>
+    <div class="grid2">
+      <div class="info-box box-green">✅ <strong>Verboten (kein Verstoss):</strong><br>Ein Oppositioneller wird in sein Heimatland abgeschoben, wo ihm Gefängnis oder Tod droht<br>Ein homosexueller Mann wird in ein Land zurückgeschickt, wo Todesstrafe gilt</div>
+      <div class="info-box box-amber">⚠️ <strong>Erlaubt:</strong><br>Rückschaffung in ein sicheres Drittland, wo keine Verfolgung droht<br>Ablehnung von Asyl, wenn keine Verfolgung nachweisbar ist</div>
+    </div>
+    <div class="info-box box-purple" style="margin-top:10px"><strong>Praxiskomplexität:</strong> Staaten müssen im Einzelfall prüfen, ob Verfolgung droht. Bei „sicheren Drittländern" gilt Non-Refoulement nicht – was zu politischen Streitigkeiten über die Definition von „Sicherheit" führt.</div></div>`,
+  'full-sen':`<h2>🌍 Fallbeispiel Senegal</h2>
+    <div class="card"><h3>Typische Situation der Migranten</h3><ul>
+      <li>Meist junge Männer</li><li>Oft arbeitslos oder ohne Perspektiven</li>
+      <li>Teilweise gebildet (Studium), aber keine Jobs vorhanden</li>
+      <li>Wollen ihre Familien finanziell unterstützen</li>
+    </ul></div>
+    <div class="grid2">
+      <div class="card" style="border-top:3px solid var(--red)"><h3 style="color:var(--red)">Push-Faktoren (Senegal)</h3><ul>
+        <li>Arbeitslosigkeit / fehlende Perspektiven</li><li>Starkes Bevölkerungswachstum → zu viele junge Leute</li>
+        <li>Armut und fehlende Chancen</li><li>Unzufriedenheit mit Politik und Regierung</li>
+      </ul></div>
+      <div class="card" style="border-top:3px solid var(--green)"><h3 style="color:var(--green)">Pull-Faktoren (Europa)</h3><ul>
+        <li>Hoffnung auf Arbeit und Geld</li><li>Bild von Europa als Ort des Erfolgs</li>
+        <li>Migration gilt als sozialer Aufstieg</li><li>Möglichkeit, Geld nach Hause zu schicken</li>
+      </ul></div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)"><h3 style="color:var(--amber)">Realität in Europa</h3><ul>
+      <li>Oft illegales Leben ohne Aufenthaltsbewilligung</li><li>Schlechte Jobs / Gelegenheitsarbeit</li>
+      <li>Unsicherheit, Angst vor Abschiebung</li><li>Viele scheitern oder werden zurückgeschickt</li>
+    </ul></div>
+    <div class="info-box box-purple"><strong>Warum kein Flüchtlingsstatus?</strong> Senegalesen kommen meist wegen Armut und fehlender Perspektiven – nicht wegen politischer Verfolgung. Deshalb gelten sie nach GFK in der Regel <em>nicht</em> als Flüchtlinge und haben keinen Anspruch auf Asyl.</div>
+    <div class="card"><h3>Lösungsansätze</h3><div class="grid2">
+      <div><strong>🇸🇳 Senegal:</strong><ul><li>Mehr Arbeitsplätze schaffen</li><li>Bessere Perspektiven für Jugendliche</li><li>Politische Stabilität verbessern</li></ul></div>
+      <div><strong>🇪🇺 Europa:</strong><ul><li>Faire Migrationspolitik</li><li>Legale Wege zur Migration schaffen</li><li>Entwicklungshilfe vor Ort (Unterstützung)</li></ul></div>
+    </div></div>`,
+  'full-stat':`<h2>📊 Statistik Migration Schweiz</h2>
+    <div class="card"><h3>Bevölkerungswachstum & Abhängigkeit von Zuwanderung</h3><p>Die Bevölkerung der Schweiz wächst im Durchschnitt jedes Jahr um knapp 1 %. Fast vier Fünftel dieses Wachstums sind auf die Zuwanderung aus dem Ausland zurückzuführen. <strong>Ohne Ausländerinnen und Ausländer würde die Bevölkerung schrumpfen</strong> – der Geburtenüberschuss der Schweizer ist negativ.</p></div>
+    <div class="card" style="border-left:3px solid var(--blue)"><h3>Rekord-Zuwanderung 2023</h3><ul>
+      <li>Seit der Jahrtausendwende wandern jährlich netto ca. <strong>70'000</strong> Ausländer in die Schweiz ein</li>
+      <li><strong>60 %</strong> davon aus dem EU/Efta-Raum, <strong>40 %</strong> aus Drittstaaten</li>
+      <li>Gleichzeitig verlassen netto ca. 6'000 Schweizer das Land pro Jahr</li>
+      <li>2023: <strong>Rekordwert</strong> – bedingt durch hohe ordentliche Zuwanderung und zusätzlich ca. 51'000 Kriegsflüchtlinge aus der Ukraine</li>
+    </ul></div>
+    <div class="card"><h3>Einwanderungsgründe 2010–2024</h3><table>
+      <tr><th>Grund</th><th>EU/Efta (1'575'205)</th><th>Drittstaaten (857'805)</th></tr>
+      <tr><td>Erwerbstätigkeit</td><td>65 % (71 % mit Familien)</td><td>29 %</td></tr>
+      <tr><td>Familiennachzug</td><td>22 %</td><td>47 %</td></tr>
+      <tr><td>Aus-/Weiterbildung</td><td>7 %</td><td>8 %</td></tr>
+      <tr><td>Übrige</td><td>6 %</td><td>8 %</td></tr>
+      <tr><td>Asylbereich</td><td>–</td><td>8 %</td></tr>
+    </table></div>
+    <div class="card"><h3>Zuwanderung ist oft temporär</h3><p style="margin-bottom:8px">Von den 2009 eingewanderten Personen lebt 2023 gut die Hälfte noch im Land; ca. 15 % wurden eingebürgert. Ob Zugewanderte langfristig bleiben, hängt wesentlich vom Einwanderungsgrund ab:</p>
+    <table><tr><th>Gruppe</th><th>Tendenz</th></tr>
+    <tr><td>Aus- und Weiterbildung</td><td>Häufig temporär – viele gehen zurück</td></tr>
+    <tr><td>Erwerbstätigkeit</td><td>Gemischt – je nach Branche und Herkunft</td></tr>
+    <tr><td>Familiennachzug</td><td>Eher dauerhaft</td></tr>
+    <tr><td>Anerkannte Flüchtlinge</td><td>Mehrheitlich dauerhaft</td></tr>
+    </table></div>`,
+  'full-karten':'', // built dynamically
+  'full-gloss':'' // built dynamically
+};
+
+const FLASHCARDS=[
+  {q:'Wo ist der Ursprung aller Hominiden?',a:'Afrika – „Wiege der Menschheit"'},
+  {q:'Wann verliess Homo erectus erstmals Afrika?',a:'Vor über 2 Mio. Jahren'},
+  {q:'Wie gelangte der Mensch nach Amerika?',a:'Über die Beringstrasse (Landbrücke in der Eiszeit), ca. 60\'000–20\'000 Jahre'},
+  {q:'Was ist ein Push-Faktor?',a:'Grund ein Land zu VERLASSEN (z.B. Krieg, Armut, schlechte Gesetze)'},
+  {q:'Was ist ein Pull-Faktor?',a:'Grund in ein Land zu ZIEHEN (z.B. bessere Jobs, Sicherheit, höherer Lohn)'},
+  {q:'Was sind Remissen?',a:'Geldüberweisungen von Migranten an ihre Familien im Heimatland'},
+  {q:'Was ist Brain Gain?',a:'Zuwanderung qualifizierter Fachkräfte ins Zielland – positiv für die Wirtschaft'},
+  {q:'Was bedeutet das Rotationsprinzip?',a:'Ausländer durften max. 9 Monate arbeiten, dann 3 Monate zurück. Familienzug verboten.'},
+  {q:'Was ist Assimilation?',a:'Migranten sollen sich vollständig an die Schweizer Gesellschaft anpassen (einseitig)'},
+  {q:'Was ist die Schwarzenbach-Initiative?',a:'1970: Wollte Ausländeranteil auf max. 10% pro Kanton. Knapp abgelehnt – 54% Nein.'},
+  {q:'Was ist das ANAG?',a:'Bundesgesetz 1931 – regelt Einreise, Aufenthalt & Ausweisung. Ziel: Migration begrenzen.'},
+  {q:'Definition Flüchtling nach GFK Art. 1?',a:'Jemand, der verfolgt wird, nicht sicher im Heimatland ist und Schutz im Ausland braucht'},
+  {q:'Was bedeutet Non-Refoulement (Art. 33)?',a:'Kein Flüchtling darf abgeschoben werden, wenn sein Leben/seine Freiheit bedroht ist'},
+  {q:'Warum wanderten Schweizer vor 1880 aus?',a:'Extreme Armut, Arbeitsmangel, Bevölkerungswachstum, kaum Industrie'},
+  {q:'Was brachte die Industrialisierung (ab 1880) für die Schweiz?',a:'Viele neue Arbeitsplätze → Schweiz wirbt Arbeitskräfte aus dem Ausland an'},
+  {q:'Typischer Migrant aus Senegal?',a:'Junger Mann, arbeitslos/keine Perspektiven, teilweise gebildet, will Familie unterstützen'},
+  {q:'Warum gilt Senegal meist nicht als Fluchtland?',a:'Weil Migranten meist wegen Armut kommen, nicht wegen Verfolgung → kein Anspruch auf Asyl'},
+  {q:'Netto-Zuwanderung Schweiz pro Jahr?',a:'Ca. 70\'000 Ausländer jährlich (Rekord 2023 wegen Ukraine)'},
+  {q:'Hauptgrund für EU-Zuwanderung in die CH?',a:'Erwerbstätigkeit (65%)'},
+  {q:'Was ist ein Drittstaat im Asylrecht?',a:'Ein sicheres Land, durch das ein Flüchtling gereist ist – Abschiebung dorthin ist erlaubt'},
+];
+
+function buildFullCards(){
+  const html=`<h2>🃏 Lernkarten</h2><p class="hint-txt">Karte anklicken → Antwort aufdecken</p><div class="cards-grid">`+
+  FLASHCARDS.map(c=>`<div class="flip" onclick="this.classList.toggle('done')"><div class="flip-in"><div class="front"><p>${c.q}</p></div><div class="back"><p>${c.a}</p></div></div></div>`).join('')+
+  `</div>`;
+  FULL_PAGES['full-karten']=html;
+}
+
+function buildFull(){
+  buildFullCards();
+  buildGlossPage('full-gloss');
+  FULL_PAGES['full-gloss']=buildGlossHTML();
+  const main=document.getElementById('full-main');
+  main.innerHTML='';
+  Object.keys(FULL_PAGES).forEach(id=>{
+    const div=document.createElement('div');div.id=id;div.className='page';
+    div.innerHTML=FULL_PAGES[id];main.appendChild(div);
+  });
+}
+function fullGo(id){
+  document.querySelectorAll('#full-main .page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById(id);
+  if(el){el.classList.add('active');window.scrollTo(0,0);}
+  document.querySelectorAll('#full-nav button').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('onclick')===`fullGo('${id}')`);
+  });
+}
+
+// ─── QUIZ DATA ─────────────────────────────────────────────────────
+const QB={
+easy:[
+  {q:'Wo liegt der Ursprung aller Menschen?',o:['Europa','Asien','Afrika','Amerika'],a:2},
+  {q:'Was ist ein Push-Faktor?',o:['Grund in ein Land zu ziehen','Grund ein Land zu verlassen','Grenzpolitik','Integrationsplan'],a:1},
+  {q:'Was ist ein Pull-Faktor?',o:['Grund wegzugehen','Staatsgrenze','Grund in ein neues Land zu ziehen','Aufenthaltsverbot'],a:2},
+  {q:'Wie kamen die ersten Menschen nach Amerika?',o:['Mit Schiffen','Über die Beringstrasse (Landbrücke)','Per Flugzeug','Durch Schwimmen'],a:1},
+  {q:'Was regelt das ANAG?',o:['Schulen für Migranten','Einreise, Aufenthalt und Ausweisung von Ausländern','Löhne der Gastarbeiter','Asylverfahren'],a:1},
+  {q:'Was bedeutet Non-Refoulement?',o:['Migranten müssen integriert werden','Ein Flüchtling darf nicht abgeschoben werden, wenn sein Leben bedroht ist','Ausländer brauchen Arbeitsbewilligung','Flüchtlinge dürfen nicht arbeiten'],a:1},
+  {q:'Was ist ein Flüchtling laut Genfer Konvention?',o:['Jemand der Arbeit sucht','Jemand der wegen Armut flieht','Jemand der wegen Verfolgung Schutz im Ausland braucht','Jemand der umzieht'],a:2},
+  {q:'Warum wanderten Schweizer vor 1880 nach Amerika aus?',o:['Wegen Krieg','Wegen Langeweile','Wegen extremer Armut und Arbeitsmangel','Wegen Religion'],a:2},
+  {q:'Was passierte mit Gastarbeitern unter dem Rotationsprinzip?',o:['Sie durften für immer bleiben','Sie mussten nach max. 9 Monaten zurück','Sie bekamen sofort den Schweizer Pass','Ihre Familien kamen mit'],a:1},
+  {q:'Was ist das Hauptproblem der Assimilationspolitik?',o:['Zu teuer','Nur Migranten mussten sich anpassen, nicht die Gesellschaft','Zu viele Sprachen','Keine Gesetze'],a:1},
+  {q:'Wer sind typische Migranten aus Senegal?',o:['Alte Frauen','Kinder','Meist junge Männer ohne Job','Reiche Unternehmer'],a:2},
+  {q:'Wie viele Ausländer wandern netto pro Jahr in die Schweiz?',o:['5\'000','20\'000','70\'000','500\'000'],a:2},
+  {q:'Welcher Kontinent ist die „Wiege der Menschheit"?',o:['Asien','Amerika','Australien','Afrika'],a:3},
+  {q:'Was ist Realität für viele Senegalesen in Europa?',o:['Gut bezahlte Jobs sofort','Legaler Status und gute Wohnung','Oft illegales Leben, schlechte Jobs, Angst vor Abschiebung','Schnelle Einbürgerung'],a:2},
+  {q:'Was sagt die Schwarzenbach-Initiative?',o:['Mehr Ausländer einladen','Ausländeranteil auf max. 10% pro Kanton begrenzen','Asyl für alle gewähren','Schweizer dürfen nicht auswandern'],a:1},
+  {q:'Wann verliess Homo sapiens Afrika?',o:['Vor 2 Mio. Jahren','Vor 500\'000 Jahren','Vor ca. 45\'000 Jahren','Vor 10\'000 Jahren'],a:2},
+  {q:'Was brachte die Industrialisierung für die Schweiz?',o:['Mehr Armut','Viele neue Arbeitsplätze in Fabriken','Weniger Einwohner','Auswanderungswelle'],a:1},
+  {q:'Wer profitierte vom Rotationsprinzip?',o:['Die Gastarbeiter','Schweizer Unternehmen und der Staat','Beide gleichermassen','Niemand'],a:1},
+  {q:'Was ist Brain Gain?',o:['Verlust von Fachkräften','Zuwanderung qualifizierter Fachkräfte ins Zielland','Bildungsprogramm','Sprachkurs'],a:1},
+  {q:'Beispiel für einen Pull-Faktor?',o:['Krieg im Heimatland','Arbeitslosigkeit','Bessere Jobs im Zielland','Schlechte Gesetze'],a:2},
+],
+medium:[
+  {q:'Vor wie vielen Jahren verliess Homo erectus erstmals Afrika?',o:['Vor 500\'000 Jahren','Vor über 2 Mio. Jahren','Vor 50\'000 Jahren','Vor 300\'000 Jahren'],a:1},
+  {q:'Wann wurde Australien besiedelt?',o:['Vor 10\'000 Jahren','Vor 1 Mio. Jahren','Vor ca. 50\'000–60\'000 Jahren','Vor 5\'000 Jahren'],a:2},
+  {q:'Was erklärt die Neandertaler-Gene in heutigen Menschen?',o:['Zufällige Mutation','Vermischung durch Migration und Kontakt zwischen Gruppen','Klimaanpassung','Wissenschaft'],a:1},
+  {q:'Was war ein konkretes Beispiel der Armutsauswanderung aus der Schweiz?',o:['Bern schickte Soldaten nach Frankreich','Kanton Aargau schickte 320 der ärmsten Einwohner nach Amerika','Zürich baute Hilfswerke','Basel gründete Kolonien'],a:1},
+  {q:'Was ist der Unterschied zwischen Saisonnier- und Jahresbewilligung?',o:['Keine – beide sind gleich','Saisonnier max. 9 Monate, Jahresbewilligung verlängerbar','Saisonnier für immer','Saisonnier nur für Frauen'],a:1},
+  {q:'Welcher Verfolgungsgrund gilt NICHT für die Flüchtlingsdefinition?',o:['Religion','Rasse','Armut','Politische Überzeugung'],a:2},
+  {q:'Warum gilt Erwerbsmigration oft als temporär?',o:['Weil sie illegal ist','Weil viele nach einigen Jahren zurückkehren oder weiterziehen','Weil der Staat sie ausweist','Weil keine Jobs gefunden werden'],a:1},
+  {q:'Wie endete die Schwarzenbach-Initiative 1970?',o:['Angenommen mit 70% Ja','Knapp angenommen (52% Ja)','Knapp abgelehnt (54% Nein)','Abgelehnt mit 80% Nein'],a:2},
+  {q:'Was war eine Folge des Rotationsprinzips für Gastarbeiterfamilien?',o:['Bessere Schulen für Kinder','Familienzug war stark eingeschränkt oder verboten','Höhere Löhne als Einheimische','Schnelle Integration'],a:1},
+  {q:'Was versteht man unter „Überfremdungsangst"?',o:['Angst vor Ausreise','Angst dass zu viele Ausländer die Schweiz kulturell/wirtschaftlich verändern','Angst vor Terrorismus','Wirtschaftskrise durch Auswanderung'],a:1},
+  {q:'Was ist ein Nachteil der Migration für das Herkunftsland?',o:['Mehr Steuereinnahmen','Bevölkerungswachstum','Verlust von Arbeitskräften und Steuereinnahmen','Bessere Infrastruktur'],a:2},
+  {q:'Was bedeutet Familiennachzug?',o:['Kinder werden deportiert','Familienmitglieder folgen dem Migranten ins neue Land','Schweizer heiraten Ausländer','Gemeinsame Auswanderung'],a:1},
+  {q:'Wofür stehen 65% der EU-Zuwanderer in die CH?',o:['Familiennachzug','Asyl','Erwerbstätigkeit','Aus-/Weiterbildung'],a:2},
+  {q:'Was machte die Beringstrasse zur Eiszeit besonders?',o:['Sie war breiter als heute','Der Meeresspiegel war tiefer – sie war eine begehbare Landbrücke','Sie war von Eis befreit','Sie verband Amerika mit Europa'],a:1},
+  {q:'Warum gelten Senegalesen in Europa oft als nicht anerkannte Flüchtlinge?',o:['Weil Senegal sicher ist','Weil sie meist wegen Armut/fehlender Perspektiven kommen, nicht wegen Verfolgung','Weil sie keine Papiere haben','Weil sie kein Französisch sprechen'],a:1},
+  {q:'Was sind Remissen?',o:['Staatliche Beihilfen','Geldüberweisungen von Migranten an ihre Familien im Heimatland','Steuern auf Löhne','Rückzahlungen an den Staat'],a:1},
+  {q:'Was ist die korrekte Reihenfolge der Ausbreitung von Homo erectus?',o:['Afrika → Amerika → Asien','Afrika → Asien (1.8 Mio.) → Europa (1.5 Mio.)','Afrika → Europa → Asien','Asien → Afrika → Europa'],a:1},
+  {q:'Was war Assimilation im Unterschied zu Integration?',o:['Beide bedeuten dasselbe','Assimilation = einseitige Anpassung der Migranten; Integration = beidseitiger Prozess','Assimilation ist freiwillig','Integration gilt nur für Flüchtlinge'],a:1},
+  {q:'Warum war Assimilation problematisch?',o:['Zu wenige Migranten nahmen teil','Einseitig – nur Migranten mussten sich ändern, nicht die Gesellschaft','Zu teuer für den Staat','Sprache war zu schwer'],a:1},
+  {q:'Was ist ein Drittstaat im Asylrecht?',o:['Ein feindliches Land','Ein sicheres Land, durch das ein Flüchtling gereist ist','Ein Land ohne Asylgesetz','Ein EU-Mitgliedstaat'],a:1},
+],
+hard:[
+  {q:'Welcher Zusammenhang besteht zwischen Klimawandel und aufrechtem Gang der Hominiden?',o:['Wärme machte Knochen stärker','Offene Savannen (durch Waldverlust) begünstigten den aufrechten Gang für bessere Sicht und Fortbewegung','Kältere Temperaturen zwangen Menschen aufrecht zu stehen','Kein Zusammenhang – rein genetisch'],a:1},
+  {q:'Was erklärt die genetischen Unterschiede zwischen heutigen Menschengruppen am besten?',o:['Verschiedene Ursprungsorte weltweit','Mehrere Wanderungswellen, geografische Isolation und Vermischung mit lokalen Gruppen wie Neandertalern','Unterschiedliche Ernährung','Klimatische Anpassung allein'],a:1},
+  {q:'Warum scheiterte die Assimilation in der Praxis oft?',o:['Migranten lernten die Sprache nicht','Gesellschaft verlangte perfekte Anpassung, akzeptierte angepasste Migranten aber trotzdem nicht vollständig','Staat gab kein Geld','Dialekte waren zu schwierig'],a:1},
+  {q:'Welche politische Bedeutung hatte die knappe Ablehnung der Schwarzenbach-Initiative?',o:['Keine – sie hatte kaum Auswirkungen','Bewies dass Schweizer keine Ausländer wollten','Machte Überfremdungsangst politisch sichtbar und führte zu späteren strengeren Ausländerpolitiken','Initiative wurde danach einfach erneut eingereicht'],a:2},
+  {q:'Warum ist das Non-Refoulement-Prinzip in der Praxis komplex?',o:['Es ist zu unbekannt','Staaten müssen im Einzelfall prüfen ob Verfolgung droht – bei sicheren Drittländern gilt es nicht, was zu Streit führt','Es gilt nur in Europa','Es wurde 2010 abgeschafft'],a:1},
+  {q:'Was ist der strukturelle Unterschied zwischen einem Wirtschaftsmigranten und einem Flüchtling?',o:['Nur das Alter','Wirtschaftsmigrant wählt freiwillig; Flüchtling flieht aus begründeter Verfolgungsgefahr – kein echtes Zuhause mehr','Flüchtlinge kommen aus ärmeren Ländern','Kein Unterschied'],a:1},
+  {q:'Welcher Mechanismus erklärt, warum Remissen sowohl Nutzen als auch Schaden bringen können?',o:['Sie finanzieren Kriege','Nutzen: Familie unterstützt; Schaden: schafft Abhängigkeit, reduziert Druck auf lokale Wirtschaft sich zu entwickeln','Nur Nutzen – kein Schaden möglich','Nur für illegale Migranten relevant'],a:1},
+  {q:'Warum ist Bevölkerungswachstum in Senegal gleichzeitig Push-Faktor UND Hindernis für Lösungen?',o:['Weil die Bevölkerung abnimmt','Zu viele junge Menschen ohne Jobs = Push; gleichzeitig erschwert Wachstum die Schaffung neuer Arbeitsplätze','Weil alte Menschen auswandern','Kein Zusammenhang'],a:1},
+  {q:'Was war der tiefere Widerspruch des Rotationsprinzips?',o:['Gastarbeiter verdienten zu viel','Wirtschaft brauchte Arbeitskräfte dauerhaft, Politik wollte aber keine dauerhafte Einwanderung – strukturell inkohärent','Gastarbeiter wollten nicht bleiben','Familien kamen trotz Verbot'],a:1},
+  {q:'Wie hängen Bevölkerungswachstum in der Schweiz und Migration strukturell zusammen?',o:['Gar nicht','Schweizer Geburtenüberschuss ist negativ – ohne Zuwanderung würde die Bevölkerung schrumpfen; Migration kompensiert demografisches Defizit','Migration verlangsamt das Wachstum','Nur Asylmigration hat demografischen Effekt'],a:1},
+  {q:'Warum ist die Unterscheidung „freiwillig vs. unfreiwillig" bei Migration oft unscharf?',o:['Weil alle freiwillig migrieren','Extreme Armut, Klimawandel oder fehlende Perspektiven schränken die Wahlfreiheit so stark ein, dass Freiwilligkeit fraglich ist','Weil Staaten alle Migration erzwingen','Weil Flüchtlinge immer Arbeit finden'],a:1},
+  {q:'Was war die tiefere gesellschaftliche Ursache der Schwarzenbach-Initiative?',o:['Wirtschaftskrise','Angst vor Kulturverlust, Lohndruck und Überfremdung nach jahrzehntelanger Gastarbeiterpolitik ohne Integrationsangebote','Politische Isolation der Schweiz','Zu viele Flüchtlinge in den 1960ern'],a:1},
+  {q:'Welche Parallele besteht zwischen Schweizer Auswanderung vor 1880 und heutiger Migration aus Entwicklungsländern?',o:['Keine – vollständig unterschiedlich','Beide folgen Push-Pull-Logik: strukturelle Armut, fehlende Perspektiven + Hoffnung auf bessere Chancen – Muster ist universell','Schweizer wanderten aus politischen Gründen aus','Entwicklungsländer haben andere Motivation'],a:1},
+  {q:'Warum führt der Rotationsgedanke langfristig zur Selbstunterhöhlung?',o:['Weil Saisonniers zu gut integriert wurden','Saisonniers gingen nach mehreren Saisons faktische Bindungen ein (Familie, Sozialnetz) – was Rückkehr verhinderte und das System aushöhlte','Weil Arbeitgeber Festverträge ausstellten','Weil der Staat die Kontrolle verlor'],a:1},
+  {q:'Welcher makroökonomische Mechanismus erklärt warum Zuwanderung die Schweizer Wirtschaft ankurbelt?',o:['Ausländer zahlen keine Steuern','Zuwanderer erhöhen Arbeitskräfteangebot, Konsum, Steuereinnahmen und füllen Lücken in Berufsfeldern die Einheimische meiden','Zuwanderung senkt Löhne für alle','Nur Hochqualifizierte helfen der Wirtschaft'],a:1},
+  {q:'Was zeigt das Fallbeispiel Senegal über den Zusammenhang von Bildung und Migration?',o:['Nur Ungebildete wandern aus','Selbst Gebildete mit Studium wandern aus, da Bildung allein ohne Jobmarkt keine Perspektive bietet','Bildung stoppt Migration komplett','Gebildete finden immer Jobs in Senegal'],a:1},
+  {q:'Was ist Australien migrationgeschichtlich besonders bedeutsam?',o:['Erste Besiedelung war europäisch','Besiedelung vor 50\'000–60\'000 Jahren zeigt frühzeitige maritime Fähigkeiten und ist eine der ältesten kontinuierlichen Kulturen','Australien wurde erst im 18. Jh. entdeckt','Keine besondere Bedeutung'],a:1},
+  {q:'Art. 33 GFK (Non-Refoulement) – was sind die Grenzen?',o:['Art. 33 gilt absolut ohne Ausnahmen','Gilt nicht bei Abschiebung in sicheres Drittland oder wenn keine Verfolgung nachweisbar ist','Gilt nur innerhalb Europas','Gilt nur für Kinder'],a:1},
+  {q:'Was unterscheidet Integrationspolitik von Assimilationspolitik grundlegend?',o:['Nichts – beide bedeuten dasselbe','Integration = gegenseitige Anpassung; Assimilation = einseitige vollständige Anpassung der Migranten','Integration ist freiwillig, Assimilation gesetzlich','Integration gilt nur für Flüchtlinge'],a:1},
+  {q:'Warum besiedelte Homo erectus Asien vor Europa?',o:['Europa war zu kalt','Die geografische Route von Afrika führt zuerst über den Nahen Osten nach Asien – Europa liegt abseits dieser Route','Europa war schon bewohnt','Homo erectus mied das Mittelmeer'],a:1},
+]};
+
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+let qActive=null,qIdx=0,qScore=0,qAnswered=false,qPool=[];
+
+function buildQuizMenu(){
+  document.getElementById('quiz-container').innerHTML=`
+    <h2>✏️ Quiz – Schwierigkeit wählen</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px">Wähle eine Schwierigkeitsstufe. Die Fragen werden zufällig gemischt.</p>
+    <div class="diff-grid">
+      <div class="diff-card" onclick="startQuiz('easy')" style="border-color:var(--green)">
+        <div style="font-size:28px;margin-bottom:8px">🟢</div>
+        <div style="font-weight:600;color:var(--green);font-size:14px">Einfach</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:5px">Grundwissen<br>Ziel: ~4.0</div>
+      </div>
+      <div class="diff-card" onclick="startQuiz('medium')" style="border-color:var(--amber)">
+        <div style="font-size:28px;margin-bottom:8px">🟡</div>
+        <div style="font-weight:600;color:var(--amber);font-size:14px">Mittel</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:5px">Details & Zusammenhänge<br>Ziel: ~5.0</div>
+      </div>
+      <div class="diff-card" onclick="startQuiz('hard')" style="border-color:var(--red)">
+        <div style="font-size:28px;margin-bottom:8px">🔴</div>
+        <div style="font-weight:600;color:var(--red);font-size:14px">Schwierig</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:5px">Analyse & Vertiefung<br>Ziel: ~6.0</div>
+      </div>
+    </div>`;
+}
+
+function startQuiz(diff){
+  qActive=diff;qIdx=0;qScore=0;qAnswered=false;
+  qPool=shuffle(QB[diff]);
+  renderQ();
+}
+
+function renderQ(){
+  const c=document.getElementById('quiz-container');
+  const bank=qPool;
+  const dlabel=qActive==='easy'?'🟢 Einfach':qActive==='medium'?'🟡 Mittel':'🔴 Schwierig';
+  if(qIdx>=bank.length){
+    const pct=Math.round(qScore/bank.length*100);
+    const note=pct>=90?'6.0':pct>=80?'5.5':pct>=70?'5.0':pct>=60?'4.5':pct>=50?'4.0':'3.5';
+    const em=pct>=85?'🎉':pct>=65?'👍':'💪';
+    c.innerHTML=`<div class="result-box">
+      <div class="score">${em} ${qScore}/${bank.length}</div>
+      <p style="font-size:17px;font-weight:600;margin-bottom:6px">Geschätzte Note: <span style="color:${pct>=70?'var(--green)':pct>=50?'var(--amber)':'var(--red)'}">${note}</span></p>
+      <p style="color:var(--muted);margin-bottom:20px">${pct}% richtig – ${pct>=85?'Ausgezeichnet!':pct>=65?'Gut gemacht!':'Weiter üben!'}</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <button class="restart" onclick="startQuiz('${qActive}')">↺ Nochmal (${dlabel})</button>
+        <button class="restart" onclick="buildQuizMenu()">⬅ Schwierigkeit wechseln</button>
+      </div>
+    </div>`;return;
+  }
+  const item=bank[qIdx];const prog=Math.round(qIdx/bank.length*100);
+  // shuffle options with index tracking
+  const idxArr=item.o.map((_,i)=>i);
+  const shuffled=shuffle(idxArr);
+  const correctShuffled=shuffled.indexOf(item.a);
+  c.innerHTML=`<div class="quiz-wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <p class="progress">Frage ${qIdx+1} von ${bank.length}</p>
+      <span style="font-size:12px;color:var(--muted)">${dlabel}</span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:${prog}%"></div></div>
+    <p class="q-txt">${item.q}</p>
+    ${shuffled.map((oi,si)=>`<button class="opt" id="opt${si}" onclick="pick(${si},${correctShuffled})">${item.o[oi]}</button>`).join('')}
+    <button class="next-btn" id="nextbtn" style="display:none" onclick="nextQ()">Weiter →</button>
+  </div>`;
+}
+
+function pick(i,correct){
+  if(qAnswered)return;qAnswered=true;
+  if(i===correct)qScore++;
+  document.querySelectorAll('.opt').forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===correct)b.classList.add('correct');
+    else if(idx===i)b.classList.add('wrong');
+  });
+  document.getElementById('nextbtn').style.display='inline-block';
+}
+function nextQ(){qIdx++;qAnswered=false;renderQ();}
 </script>
 </body>
 </html>
